@@ -29,5 +29,4 @@ public class Node {
         this.ip_address = ipAddress;
         this.tcpPort = tcpPort;
     }
-
 }
