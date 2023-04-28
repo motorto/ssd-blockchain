@@ -1,4 +1,4 @@
-package grupo3.ssd.blockchain.p2p.Operation;
+package group3.ssd.blockchain.p2p.Operation;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

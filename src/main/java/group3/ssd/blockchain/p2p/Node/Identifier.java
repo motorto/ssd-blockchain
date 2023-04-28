@@ -1,6 +1,6 @@
-package grupo3.ssd.blockchain.p2p.Node;
+package group3.ssd.blockchain.p2p.Node;
 
-import grupo3.ssd.blockchain.p2p.NetworkStandards;
+import group3.ssd.blockchain.p2p.NetworkStandards;
 import lombok.Getter;
 
 import java.math.BigInteger;

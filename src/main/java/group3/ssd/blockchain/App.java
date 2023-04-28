@@ -1,8 +1,8 @@
-package grupo3.ssd.blockchain;
+package group3.ssd.blockchain;
 
-import grupo3.ssd.blockchain.p2p.Node.Identifier;
-import grupo3.ssd.blockchain.p2p.Node.Node;
-import grupo3.ssd.blockchain.p2p.Node.NodeTriplet;
+import group3.ssd.blockchain.p2p.Node.Identifier;
+import group3.ssd.blockchain.p2p.Node.Node;
+import group3.ssd.blockchain.p2p.Node.NodeTriplet;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

@@ -1,9 +1,9 @@
-package grupo3.ssd.blockchain.p2p.Routing;
+package group3.ssd.blockchain.p2p.Routing;
 
-import grupo3.ssd.blockchain.p2p.NetworkStandards;
-import grupo3.ssd.blockchain.p2p.Node.Identifier;
-import grupo3.ssd.blockchain.p2p.Node.Node;
-import grupo3.ssd.blockchain.p2p.Node.NodeTriplet;
+import group3.ssd.blockchain.p2p.NetworkStandards;
+import group3.ssd.blockchain.p2p.Node.Identifier;
+import group3.ssd.blockchain.p2p.Node.Node;
+import group3.ssd.blockchain.p2p.Node.NodeTriplet;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package grupo3.ssd.blockchain.p2p.Node;
+package group3.ssd.blockchain.p2p.Node;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package grupo3.ssd.blockchain.p2p;
+package group3.ssd.blockchain.p2p;
 
 public class NetworkStandards {
 
