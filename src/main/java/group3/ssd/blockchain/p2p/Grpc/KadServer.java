@@ -45,4 +45,9 @@ public class KadServer {
         return node;
     }
 
+    public void blockUntilShutdown() throws InterruptedException {
+        if (server != null) {
+            server.awaitTermination();
+        }
+    }
 }
