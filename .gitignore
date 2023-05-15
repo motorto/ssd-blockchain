@@ -249,3 +249,4 @@ x86/
 /src/main/java/group3/ssd/blockchain/Messages.java
 /src/main/java/group3/ssd/blockchain/p2p/KademliaProtocolGrpc.java
 /src/main/java/group3/ssd/blockchain/p2p/Messages.java
+.attatch_*
