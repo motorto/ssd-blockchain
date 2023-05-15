@@ -2,8 +2,10 @@ package group3.ssd.blockchain.p2p.Node;
 
 import group3.ssd.blockchain.p2p.Grpc.ClientManager;
 import group3.ssd.blockchain.p2p.NetworkStandards;
+import group3.ssd.blockchain.p2p.Operation.NodeLookUpOperation;
 import group3.ssd.blockchain.p2p.Operation.Operation;
 import group3.ssd.blockchain.p2p.Routing.kBuckets;
+import group3.ssd.blockchain.p2p.Storage.Storage;
 import lombok.Getter;
 
 import java.math.BigInteger;
@@ -33,11 +35,15 @@ public class Node {
 
     private final Map<ByteWrapper, Pair<Integer, Integer>> interactionsPerPeer;
 
+    @Getter
+    Storage storage;
+
 
     public Node(byte[] nodeID, ClientManager clientManager, int port) {
         this.nodeId = nodeID;
         this.port = port;
         this.clientManager = clientManager;
+        this.storage = new Storage(this);
         this.routingTable = new kBuckets();
         this.seenMessages = new ConcurrentSkipListSet<>();
         this.onGoingOperations = Collections.synchronizedList(new LinkedList<>());
@@ -60,8 +66,8 @@ public class Node {
             this.routingTable.getKBuckets().set(bucket, kBucket);
         }
 
-//        new NodeLookUpOperation(this, this.getNodeId(), (_nodes) -> {
-//        }).execute();
+        new NodeLookUpOperation(this, this.getNodeId(), (_nodes) -> {
+        }).execute();
     }
 
     public List<NodeTriplet> findClosestNodes(int nodeCount, byte[] nodeId) {
@@ -218,5 +224,5 @@ public class Node {
             return current.mapKey((currentGood) -> currentGood + 1);
         });
     }
-    
+
 }

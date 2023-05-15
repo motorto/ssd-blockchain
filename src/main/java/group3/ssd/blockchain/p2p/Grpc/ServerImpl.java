@@ -85,7 +85,7 @@ public class ServerImpl extends KademliaProtocolGrpc.KademliaProtocolImplBase {
         } else {
             builder.setSeen(true);
         }
-        
+
         responseObserver.onNext(builder.build());
         responseObserver.onCompleted();
     }
@@ -94,4 +94,11 @@ public class ServerImpl extends KademliaProtocolGrpc.KademliaProtocolImplBase {
         this.messagesConsumer.add(messageConsumer);
     }
 
+    @Override
+    public void store(Messages.Store request, StreamObserver<Messages.Store> responseObserver) {
+        this.node.getStorage().insertValue(request.getOwningNodeID().toByteArray(), request.getKey().toByteArray(), request.getValue().toByteArray());
+
+        responseObserver.onNext(Messages.Store.newBuilder().setValue(request.getValue()).build());
+        responseObserver.onCompleted();
+    }
 }

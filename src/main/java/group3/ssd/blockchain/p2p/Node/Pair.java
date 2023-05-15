@@ -2,7 +2,6 @@ package group3.ssd.blockchain.p2p.Node;
 
 
 // STOLEN FROM:
-
 // https://cr.openjdk.org/~vadim/8140503/webrev.01/modules/base/src/main/java/javafx/util/Pair.java.html
 
 /*
