@@ -36,11 +36,21 @@ public class App {
                     }
             );
 
+            menu();
+
             this.serverThread.start();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void menu(){
+        int i = 1;
+        System.out.println("MENU\n" +
+                (i++) + "   Print Blockchain\n" +
+                //more options
+                "Insert an option.\n");
     }
 
     public static void main(String[] args) {
