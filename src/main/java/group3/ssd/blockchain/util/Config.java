@@ -1,4 +1,4 @@
-package group3.ssd.blockchain;
+package group3.ssd.blockchain.util;
 
 public class Config {
     public static final String COIN_NAME = "UnnamedCoin";
@@ -11,5 +11,6 @@ public class Config {
     public static final int MAX_TRANSACTIONS_PER_BLOCK = 8;
     public static final double MIN_NODE_REPUTATION = 0.7;
     public static final int MINING_REWARD = 1;
-    public static String knownNode = "00161ec8fc86b769fea44a8216c9ce60cedfea5e8040e3ca3a4cd34ae17231d3";
+    public static String knownNode = "00c89800c0d79296dbe17c1a2aa7dc2fe4b288217aef3fd66a6a24169d8da4ce";
+//    public static String knownNode = "";
 }

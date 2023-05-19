@@ -1,6 +1,5 @@
 package group3.ssd.blockchain.p2p;
 
-
 import group3.ssd.blockchain.p2p.grpc.KBucket_GRPC;
 import group3.ssd.blockchain.p2p.grpc.Node_GRPC;
 
@@ -17,7 +16,7 @@ public class NodeConverter {
     }
 
     public static ArrayList<Node> GRPC_to_KBucket(KBucket_GRPC kbucket) {
-        ArrayList<Node_GRPC> nodeList = new ArrayList<>(kbucket.getKbucketList());
+        ArrayList<Node_GRPC> nodeList = new ArrayList<>(kbucket.getKbucketList());  //adicionar 'List' à frente do nome do método/message
         ArrayList<Node> a = new ArrayList<>();
         for (Node_GRPC node : nodeList)
             a.add(GRPC_to_Node(node));

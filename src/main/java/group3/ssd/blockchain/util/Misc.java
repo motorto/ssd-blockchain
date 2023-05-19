@@ -1,5 +1,6 @@
-package Util;
+package group3.ssd.blockchain.util;
 
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
@@ -7,40 +8,22 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
-import java.math.BigInteger;
+public class Misc {
 
-public class UtilMisc {
-    
-    public static final String HASH_TYPE = "SHA-256";
-    public static final String COIN_NAME = "UnnamedCoin";
-    public static final int MINING_DIFFICULTY = 2;
-    public static final int NODE_CREATION_DIFFICULTY = 2;
-    public static final int MAX_NODES_BUCKET = 20;
-    public static final int ALPHA = 3;
-
-    public static final int KEY_SIZE = 1024;
-    public static final int MAX_TRANSACTIONS_PER_BLOCK = 8;
-    public static final double MIN_NODE_REPUTATION=0.7;
-    public static final int MINING_REWARD=1;
-    public static final String knownNode = "00161ec8fc86b769fea44a8216c9ce60cedfea5e8040e3ca3a4cd34ae17231d3";
-  
-    
     public static String applyEncryption(String base) {
 
-        //System.out.println(base);
-
-        try{
-            MessageDigest digest = MessageDigest.getInstance(UtilMisc.HASH_TYPE);
+        try {
+            MessageDigest digest = MessageDigest.getInstance(Config.HASH_TYPE);
             byte[] hash = digest.digest(base.getBytes(StandardCharsets.UTF_8));
             StringBuilder hexString = new StringBuilder();
 
             for (int i = 0; i < hash.length; i++) {
                 String hex = Integer.toHexString(0xff & hash[i]);
-                if(hex.length() == 1) hexString.append('0');
+                if (hex.length() == 1) hexString.append('0');
                 hexString.append(hex);
             }
             return hexString.toString();
-        } catch(Exception ex){
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
@@ -55,14 +38,11 @@ public class UtilMisc {
         byte[] state;
 
         FixedRand() {
-            try
-            {
-                this.sha = MessageDigest.getInstance(UtilMisc.HASH_TYPE);
+            try {
+                this.sha = MessageDigest.getInstance(Config.HASH_TYPE);
                 this.state = sha.digest();
-            }
-            catch (NoSuchAlgorithmException e)
-            {
-                throw new RuntimeException("Couldn't find "+UtilMisc.HASH_TYPE);
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException("Couldn't find " + Config.HASH_TYPE);
             }
         }
     }
@@ -82,9 +62,13 @@ public class UtilMisc {
         return keyFactory.generatePublic(X509publicKey);
     }
 
+    public static void printTabs(int numTabs) {
+        for (int i = 0; i < numTabs; i++)
+            System.out.print("\t");
+    }
 
-    public static String stringToBitString(String str){
-        return new BigInteger(str,16).toString(2);
+    public static String stringToBitString(String str) {
+        return new BigInteger(str, 16).toString(2);
     }
 
 }
