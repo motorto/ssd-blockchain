@@ -1,86 +1,95 @@
 syntax = "proto3";
 
-//option java_multiple_files = true;
-option java_package = "group3.ssd.blockchain.p2p";
-//option java_outer_classname = "Messages";
+option java_multiple_files = true;
+option java_package = "group3.ssd.blockchain.p2p.grpc";
+option java_outer_classname = "BlockchainGRPCProto";
+option objc_class_prefix = "BC";
 
-service KademliaProtocol {
+package blockchain;
+import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
 
-  rpc ping(Ping) returns (Ping) {}
+service Peer {
 
-  rpc send(Message) returns (MessageResponse) {}
+  //Main server actions
+  rpc ping (Ping) returns (Pong){};
+  rpc broadcast_block (Block) returns (Status){};
+  rpc broadcast_transaction (Transaction) returns (Status){};
+  rpc broadcast_blockchain (BlockChain) returns (Status){}
+  rpc findNodes(FindNode) returns (KBucket_GRPC) {}
 
-  rpc store(Store) returns (Store) {}
-
-  rpc findNode(TargetID) returns (stream FoundNode) {}
-
-  rpc findValue(TargetID) returns (stream FoundValue) {}
-
-  rpc broadcastMessage(Broadcast) returns (BroadcastResponse) {}
 
 }
 
-message TargetID {
-  bytes requestingNodeID = 1;
-  int32 requestNodePort = 2;
-  bytes targetID = 3;
-}
-
-message Ping {
-  bytes nodeID = 1;
-  int32 requestingNodePort = 2;
-}
-
-message Message {
-  bytes sendingNodeID = 1;
-  int32 sendingNodePort = 2;
-
-  bytes message = 3;
-}
-
-message MessageResponse {
-  bytes response = 1;
-}
-
-message Broadcast {
-  bytes requestingNodeID = 1;
-  int32 requestingNodePort = 2;
-
-  bytes messageID = 3;
-  int32 height = 4;
-  bytes messageContent = 5;
-}
-
-message BroadcastResponse {
-  bool seen = 1;
-}
-
-message Store {
-  bytes requestingNodeID = 1;
-  int32 requestingNodePort = 2;
-
-  bytes owningNodeID = 3;
-  bytes key = 4;
-  bytes value = 5;
-}
-
-message FoundNode {
-  bytes nodeID = 1;
-  string nodeAddress = 2;
+message Ping{
+  string id = 1;
+  string ip = 2;
   int32 port = 3;
-  int64 lastSeen = 4;
+  int32 proof = 4;
+  string pubKey = 5;
+
+}
+message Pong{
+  bool pong = 1;
+  BlockChain blockchain = 2;
 }
 
-enum StoreKind {
-  VALUE_FOUND = 0;
-  NODES = 1;
+message IPAddres{
+  string ip = 1;
+  string port = 2;
+}
+message BlockChain{
+  repeated Block chain = 1;
+  TransactionsList pendingTransactions = 2;
 }
 
-message FoundValue {
-  StoreKind valueKind = 1;
-  bytes key = 2;
-  bytes value = 3;
-  bytes nodeID = 4;
-  string nodeAddress = 5;
-  int32 port = 6;
+message Block{
+  string hashId = 1;
+  string hash = 2;
+  string previousHash = 3;
+  TransactionsList transactionsList = 4;
+  int32 nonce = 5;
+  int64 timestamp = 6;
+  string publicKey = 7;
+  string nodeId = 8;
 }
+
+message TransactionsList{
+  repeated Transaction transactionList = 1;
+}
+
+message Transaction{
+  string hash = 1;
+  string senderPK = 2;
+  string receiverPK = 3;
+  bytes signature = 4;
+  int64 timestamp = 5;
+  int32 amount = 6;
+  string misc = 7;
+  string nodeId = 8;
+}
+
+message Status{
+  string status = 1;
+}
+
+message FindNode{
+  string id = 1;
+  string ip = 2;
+  int32 port = 3;
+  int32 proof = 4;
+  string pubKey = 5;
+  string targetId = 6;
+}
+
+message Node_GRPC{
+  string id = 1;
+  string ip = 2;
+  int32 port = 3;
+}
+
+message KBucket_GRPC{
+  repeated Node_GRPC kbucket = 1;
+}
+
+
