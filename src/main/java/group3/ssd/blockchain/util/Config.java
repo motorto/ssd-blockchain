@@ -11,6 +11,6 @@ public class Config {
     public static final int MAX_TRANSACTIONS_PER_BLOCK = 8;
     public static final double MIN_NODE_REPUTATION = 0.7;
     public static final int MINING_REWARD = 1;
-    public static String knownNode = "00c89800c0d79296dbe17c1a2aa7dc2fe4b288217aef3fd66a6a24169d8da4ce";
-//    public static String knownNode = "";
+    //    public static String knownNode = "00c89800c0d79296dbe17c1a2aa7dc2fe4b288217aef3fd66a6a24169d8da4ce";
+    public static String knownNode = "";
 }

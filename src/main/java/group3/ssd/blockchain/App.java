@@ -24,8 +24,6 @@ public class App {
                 "# " + (i++) + "   Send Coins to User\n" +
                 "# " + (i++) + "   Print Bucket\n" +
                 "# Please insert an option.\n");
-
-
     }
 
     public static void main(String[] args) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException, InterruptedException {
@@ -40,7 +38,6 @@ public class App {
         User user = new User();
         user.setup(port, "localhost");
         User.startPinging();
-
 
         PeerServer server = new PeerServer("localhost", port);
         server.start();
@@ -72,7 +69,6 @@ public class App {
                     User.blockchain.printBlockChain();
                     break;
                 case 6:
-
                     System.out.println("Introduce Receiver Public Key");
                     String receiverPK = scan.nextLine();
                     if (receiverPK.equals(User.publicKey)) {

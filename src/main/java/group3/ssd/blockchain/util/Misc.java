@@ -62,11 +62,6 @@ public class Misc {
         return keyFactory.generatePublic(X509publicKey);
     }
 
-    public static void printTabs(int numTabs) {
-        for (int i = 0; i < numTabs; i++)
-            System.out.print("\t");
-    }
-
     public static String stringToBitString(String str) {
         return new BigInteger(str, 16).toString(2);
     }
