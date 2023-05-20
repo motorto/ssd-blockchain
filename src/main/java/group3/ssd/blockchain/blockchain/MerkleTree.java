@@ -6,53 +6,55 @@ import java.util.ArrayList;
 
 import static group3.ssd.blockchain.util.Misc.applyEncryption;
 
+//Merkle para verificar integridade dos dados
 public class MerkleTree {
-    ArrayList<Transaction> transactionsList; //A list of transaction
-    String root; //Merkle Tree Root
+    ArrayList<Transaction> transactionsList; //lista de transações
+    String root; //raiz da tree
 
     public MerkleTree(ArrayList<Transaction> transactionsList) {
         this.transactionsList = transactionsList;
-        root = "";
+        root = ""; //definir a raiz como vazio
     }
 
+    // gerar a raiz da tree
     public void genRoot() {
 
-        if (transactionsList.size() != Config.MAX_TRANSACTIONS_PER_BLOCK) return;
-
+        if (transactionsList.size() != Config.MAX_TRANSACTIONS_PER_BLOCK) return; //raiz vai ser vazia
+        //se nao calcula a hash de cada transação 
         ArrayList<String> oldHashList = new ArrayList<>();
 
         for (Transaction transaction : transactionsList)
             oldHashList.add(transaction.calculateHash());
 
         ArrayList<String> newHashList = getNewHashList(oldHashList);
-        while (newHashList.size() != 1) {
+        while (newHashList.size() != 1) { //até chegar á raiz
             newHashList = getNewHashList(newHashList);
         }
 
         this.root = newHashList.get(0);
     }
 
+    //recebe uma hash temp e gera uma nova lista com os valores de ambos os lados
     private ArrayList<String> getNewHashList(ArrayList<String> tempHashList) {
 
         ArrayList<String> newHashList = new ArrayList<String>();
         int index = 0;
         while (index < tempHashList.size()) {
-            // left
+            // esquerda
             String left = tempHashList.get(index);
             index++;
 
-            // right
+            // direita
             String right = "";
             if (index != tempHashList.size()) {
                 right = tempHashList.get(index);
             }
 
-            String sha2HexValue = applyEncryption(left + right);
-            newHashList.add(sha2HexValue);
+            String all = applyEncryption(left + right);
+            newHashList.add(all);
             index++;
 
         }
-
         return newHashList;
     }
 
