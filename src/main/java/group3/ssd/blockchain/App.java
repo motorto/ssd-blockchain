@@ -15,17 +15,14 @@ public class App {
 
     public static void printMenu() {
         int i = 1;
-        System.out.println("#     MENU\n" +
-                "# " + (i++) + "   Get Personal Information\n" +
-                "# " + (i++) + "   Start Mining\n" +
-                "# " + (i++) + "   Go to Auction\n" +
-                "# " + (i++) + "   Get Balance\n" +
-                "# " + (i++) + "   Print Blockchain\n" +
-                "# " + (i++) + "   Send Coins to User\n" +
-                "# " + (i++) + "   Print Bucket\n" +
-                "# Please insert an option.\n");
-
-
+        System.out.println("Opções:\n" +
+                (i++) + "   Informação Pessoal\n" +
+                (i++) + "   Iniciar Mining\n" +
+                (i++) + "   Saldo\n" +
+                (i++) + "   Ver Blockchain\n" +
+                (i++) + "   Enviar Coins\n" +
+                (i++) + "   Ver Bucket\n" +
+                "Insira um número de 1 a 6:\n");
     }
 
     public static void main(String[] args) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException, InterruptedException {
@@ -36,11 +33,9 @@ public class App {
             port = 8080;
         }
 
-
         User user = new User();
         user.setup(port, "localhost");
         User.startPinging();
-
 
         PeerServer server = new PeerServer("localhost", port);
         server.start();
@@ -54,35 +49,31 @@ public class App {
             int option = scan.nextInt();
             scan.nextLine();
             switch (option) {
-                case 1:
+                case 1: //informação pessoal
                     System.out.println("ID: " + User.id);
                     System.out.println(User.ip + ":" + User.port);
-                    System.out.println("PublicKey: " + User.publicKey);
+                    System.out.println("Chave Publica: " + User.publicKey);
                     break;
-                case 2:
+                case 2: //iniciar mining
                     User.startMining();
                     break;
-                case 3:
-                    //TODO implement and run auction
-                    break;
-                case 4:
+                case 3: //saldo
                     User.wallet.printWalletBalance();
                     break;
-                case 5:
+                case 4: //blockchain
                     User.blockchain.printBlockChain();
                     break;
-                case 6:
-
-                    System.out.println("Introduce Receiver Public Key");
+                case 5: // enviar coin
+                    System.out.println("Inserir chave publica do recetor");
                     String receiverPK = scan.nextLine();
-                    if (receiverPK.equals(User.publicKey)) {
-                        System.out.println("You can not send funds to your own wallet." + "\n\n\n");
+                    if (receiverPK.equals(User.publicKey)) { //se tentar enviar para si proprio
+                        System.out.println("ERRO" + "\n\n\n");
                     } else {
-                        System.out.println("Please insert the amount of coins you wish to send.");
+                        System.out.println("Quando quer enviar?");
                         int numberOfCoins = scan.nextInt();
 
-                        if (User.wallet.getBalance() < numberOfCoins) {
-                            System.out.println("You do not have enough funds." + "\n\n\n");
+                        if (User.wallet.getBalance() < numberOfCoins) { //Se nao tiver coins suficientes
+                            System.out.println("ERRO." + "\n\n\n");
                         } else {
                             System.out.println("RPK: " + receiverPK);
                             Transaction transaction = new Transaction(User.publicKey, receiverPK, numberOfCoins);
@@ -90,11 +81,11 @@ public class App {
                         }
                     }
                     break;
-                case 7:
+                case 6: //ver bucket
                     User.kbucket.print();
                     break;
                 default:
-                    System.out.println("Chosen option is not valid" + "\n\n\n");
+                    System.out.println("ERRO" + "\n\n\n");
                     break;
             }
         }
