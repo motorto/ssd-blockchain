@@ -17,15 +17,15 @@ import java.util.logging.Logger;
  * Operations Made by the server side of the peer
  */
 
-public class PeerServer {
+public class KadServer {
 
-    private static final Logger logger = Logger.getLogger(PeerServer.class.getName());
+    private static final Logger logger = Logger.getLogger(KadServer.class.getName());
     private Server server;
     public String ip;
     public int port;
     PeerImpl broker = new PeerImpl();
 
-    public PeerServer(String ip, int port) throws UnknownHostException {
+    public KadServer(String ip, int port) throws UnknownHostException {
         this.ip = ip + ":" + port;
         this.port = port;
     }
@@ -51,7 +51,7 @@ public class PeerServer {
                 // Use stderr here since the logger may have been reset by its JVM shutdown hook.
                 System.err.println("*** shutting down gRPC server since JVM is shutting down");
                 try {
-                    PeerServer.this.stop();
+                    KadServer.this.stop();
                 } catch (InterruptedException e) {
                     e.printStackTrace(System.err);
                 }
@@ -132,7 +132,7 @@ public class PeerServer {
 
             if (User.kbucket.checkNodeExistence(new Node(request.getId(), request.getIp(), request.getPort()), request.getProof(), request.getPubKey())) {
 
-                responseObserver.onNext(NodeConverter.KBucket_to_GRPC(User.kbucket.getNeighboursByDistance(request.getTargetId(), User.kbucket.lastSeen)));
+                responseObserver.onNext(NodeSerializable.KBucket_to_GRPC(User.kbucket.getNeighboursByDistance(request.getTargetId(), User.kbucket.lastSeen)));
             }
             responseObserver.onCompleted();
 

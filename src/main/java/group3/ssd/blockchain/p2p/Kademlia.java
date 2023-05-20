@@ -15,8 +15,7 @@ public class Kademlia {
         return User.calculateNeighbourHash(ip, port, proof, pubKey).equals(id);
     }
 
-    //find a Node from kbucket through nodeid
-    public static Node findNode(String targetId) throws InterruptedException {
+    public static void findNode(String targetId) {
 
         ArrayList<Node> closestNodes = User.kbucket.getNClosestNodes(targetId, User.kbucket.lastSeen);
         ArrayList<Node> foundNodes = new ArrayList<>();
@@ -47,7 +46,7 @@ public class Kademlia {
             if (lastDiscovered == null) {
                 lastDiscovered = new ArrayList<>();
             } else if (lastDiscovered.containsAll(foundNodes)) {
-                return null;
+                return;
             }
 
             lastDiscovered.clear();
@@ -59,7 +58,6 @@ public class Kademlia {
         }
     }
 
-    //Remove repeated nodes from kbucket
     private static void removeRepeated(ArrayList<Node> users) {
 
         Set<Node> user = new HashSet<>(users);
@@ -76,7 +74,7 @@ public class Kademlia {
 
         int node1Size = nodeHash1.length();
         int node2Size = nodeHash2.length();
-        String xorResult = "";
+        StringBuilder xorResult = new StringBuilder();
 
         boolean isDifferent = node1Size != node2Size;
         int maxSize = Math.max(node1Size, node2Size);
@@ -92,11 +90,11 @@ public class Kademlia {
         for (int i = maxSize - 1; i >= 0; i--) {
 
             String temp = nodeHash1.charAt(i) != nodeHash2.charAt(i) ? "1" : "0";
-            xorResult = temp + xorResult;
+            xorResult.insert(0, temp);
 
         }
 
-        return xorResult;
+        return xorResult.toString();
     }
 
     //compare distance between nodes

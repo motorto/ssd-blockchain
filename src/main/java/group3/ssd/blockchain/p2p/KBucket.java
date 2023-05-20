@@ -47,20 +47,17 @@ public class KBucket {
     }
 
     public void checkNodeListExistence(ArrayList<Node> userList) {
-        int proof = -1;
-        //needs trust
         for (Node node : userList) {
             checkNodeExistence(node, -1, "");
         }
     }
 
     public boolean checkNodeExistence(Node node, int proof, String pubKey) {
-        if (node.id.equals(User.id)) { //Se o node a verificar for ele mesmo
+        if (node.id.equals(User.id)) {
             return true;
         }
 
         if (proof != -1) {
-            //Se não for válido
             if (!Kademlia.checkNodeValidity(node.id, node.ip, node.port, proof, pubKey))
                 return false;
         }
