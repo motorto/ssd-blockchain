@@ -13,10 +13,6 @@ import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-/**
- * Operations Made by the server side of the peer
- */
-
 public class KadServer {
 
     private static final Logger logger = Logger.getLogger(KadServer.class.getName());
