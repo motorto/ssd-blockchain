@@ -30,7 +30,6 @@ public class Wallet {
     public void printWalletBalance() {
         System.out.print("Your account balance is: ");
         System.out.print(getBalance());
-        System.out.println(" " + Config.COIN_NAME);
     }
 
     public double getBalance() {

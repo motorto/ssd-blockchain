@@ -147,7 +147,7 @@ public class Blockchain {
         newTransaction.signTransaction(sender);
 
         pendingTransactions.add(newTransaction);
-        System.out.println("Transaction of " + amount + Config.COIN_NAME + " signed from " + sender.getPublicKey() + "\nto " + receiver.getPublicKey());
+        System.out.println("Transaction of " + amount + " signed from " + sender.getPublicKey() + "\nto " + receiver.getPublicKey());
 
         return newTransaction;
     }
