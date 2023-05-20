@@ -1,8 +1,8 @@
 package group3.ssd.blockchain;
 
 import group3.ssd.blockchain.blockchain.Transaction;
+import group3.ssd.blockchain.p2p.KadServer;
 import group3.ssd.blockchain.p2p.Kademlia;
-import group3.ssd.blockchain.p2p.PeerServer;
 import group3.ssd.blockchain.p2p.User;
 import group3.ssd.blockchain.util.Config;
 
@@ -37,7 +37,7 @@ public class App {
         user.setup(port, "localhost");
         User.startPinging();
 
-        PeerServer server = new PeerServer("localhost", port);
+        KadServer server = new KadServer("localhost", port);
         server.start();
 
         Kademlia.findNode(User.id);
