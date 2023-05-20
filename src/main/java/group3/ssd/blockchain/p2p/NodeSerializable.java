@@ -5,7 +5,7 @@ import group3.ssd.blockchain.p2p.grpc.Node_GRPC;
 
 import java.util.ArrayList;
 
-public class NodeConverter {
+public class NodeSerializable {
 
     public static Node_GRPC Node_to_GRPC(Node node) {
         return Node_GRPC.newBuilder().setId(node.id).setIp(node.ip).setPort(node.port).build();
@@ -15,8 +15,8 @@ public class NodeConverter {
         return new Node(node.getId(), node.getIp(), node.getPort());
     }
 
-    public static ArrayList<Node> GRPC_to_KBucket(KBucket_GRPC kbucket) {
-        ArrayList<Node_GRPC> nodeList = new ArrayList<>(kbucket.getKbucketList());  //adicionar 'List' à frente do nome do método/message
+    public static ArrayList<Node> GRPC_to_KBucket(KBucket_GRPC kBucketGrpc) {
+        ArrayList<Node_GRPC> nodeList = new ArrayList<>(kBucketGrpc.getKbucketList());
         ArrayList<Node> a = new ArrayList<>();
         for (Node_GRPC node : nodeList)
             a.add(GRPC_to_Node(node));

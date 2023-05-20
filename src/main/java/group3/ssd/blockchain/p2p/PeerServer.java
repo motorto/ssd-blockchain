@@ -132,7 +132,7 @@ public class PeerServer {
 
             if (User.kbucket.checkNodeExistence(new Node(request.getId(), request.getIp(), request.getPort()), request.getProof(), request.getPubKey())) {
 
-                responseObserver.onNext(NodeConverter.KBucket_to_GRPC(User.kbucket.getNeighboursByDistance(request.getTargetId(), User.kbucket.lastSeen)));
+                responseObserver.onNext(NodeSerializable.KBucket_to_GRPC(User.kbucket.getNeighboursByDistance(request.getTargetId(), User.kbucket.lastSeen)));
             }
             responseObserver.onCompleted();
 

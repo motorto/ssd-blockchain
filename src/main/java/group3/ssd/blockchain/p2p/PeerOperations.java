@@ -45,7 +45,7 @@ public class PeerOperations {
             try {
 
                 KBucket_GRPC foundNodes = blockingStub.findNodes(FindNode.newBuilder().setId(User.id).setIp(User.ip).setPort(User.port).setProof(User.proof).setPubKey(User.publicKey).setTargetId(targetId).build());
-                ArrayList<Node> nodeList = NodeConverter.GRPC_to_KBucket(foundNodes);
+                ArrayList<Node> nodeList = NodeSerializable.GRPC_to_KBucket(foundNodes);
 
                 return nodeList;
             } catch (StatusRuntimeException e) {
