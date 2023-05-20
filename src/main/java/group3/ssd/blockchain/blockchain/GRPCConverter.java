@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class GRPCConverter {
 
+    //converter blockchain
     public static BlockChain mkBlockChain(Blockchain bc) {
         ArrayList<group3.ssd.blockchain.p2p.grpc.Block> Bchain = new ArrayList<>();
         for (Block b : bc.chain) {
@@ -18,7 +19,7 @@ public class GRPCConverter {
         return BlockChain.newBuilder().addAllChain(Bchain).setPendingTransactions(mkTransactionList(bc.getPendingTransactions())).build();
     }
 
-    //create block
+    //converter bloco
     public static group3.ssd.blockchain.p2p.grpc.Block mkBlock(Block block) {
 
         return group3.ssd.blockchain.p2p.grpc.Block.newBuilder()
@@ -33,8 +34,7 @@ public class GRPCConverter {
                 .build();
     }
 
-
-    //create transaction List
+    //converter lista de transações
     public static TransactionsList mkTransactionList(ArrayList<Transaction> transactions) {
         ArrayList<group3.ssd.blockchain.p2p.grpc.Transaction> tlist = new ArrayList<>();
         for (Transaction t : transactions) {
@@ -50,6 +50,7 @@ public class GRPCConverter {
         return TransactionsList.newBuilder().addAllTransactionList(tlist).build();
     }
 
+    // converter transação
     public static group3.ssd.blockchain.p2p.grpc.Transaction mkTransaction(Transaction t) {
         group3.ssd.blockchain.p2p.grpc.Transaction new_t = group3.ssd.blockchain.p2p.grpc.Transaction.newBuilder()
                 .setHash(t.hash)
