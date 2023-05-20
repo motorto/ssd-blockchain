@@ -25,7 +25,6 @@ public class User {
     public static KBucket kbucket = new KBucket();
     public static Wallet wallet = new Wallet();
     public static Blockchain blockchain;
-    public static ArrayList<Node> blacklist = new ArrayList<>();
     public static Ledger ledger;
     public static MineBlockThread mineBlockThread = new MineBlockThread();
     public static KeepAliveThread keepAliveThread = new KeepAliveThread();
@@ -113,36 +112,9 @@ public class User {
                     User.kbucket.getNode(node.id).addSuccessfulInteraction();
                 else {
                     User.kbucket.getNode(node.id).addUnsuccessfulInteraction();
-                    checkNodesReputation(kbucket.getNode(node.id));
                 }
             }
         }
-    }
-
-    public static void checkNodesReputation(Node node) {
-        double reputation = -1;
-        if (node.totalInteractions >= 1)
-            reputation = (double) node.successfulInteractions / node.totalInteractions;
-        if (reputation < Config.MIN_NODE_REPUTATION) {
-            User.blacklistNode(node);
-        }
-    }
-
-    public static void blacklistNode(Node node) {
-        kbucket.removeNode(node);
-        addBlacklist(node);
-    }
-
-    public static void addBlacklist(Node node) {
-        blacklist.add(node);
-    }
-
-    public static ArrayList<Node> getBlacklist() {
-        return blacklist;
-    }
-
-    public static boolean isBlacklisted(Node node) {
-        return blacklist.contains(node);
     }
 
     public static void shareBlock(Block block, String sender) {
