@@ -11,8 +11,6 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.Date;
 
-import static group3.ssd.blockchain.util.Misc.printTabs;
-
 public class Transaction {
     public String hash;
     public String senderPK;
@@ -55,21 +53,16 @@ public class Transaction {
         return this.signature != null;
     }
 
-    public void printTransaction(int numTabs) {
-        printTabs(numTabs);
+    public void printTransaction() {
+        System.out.println();
         System.out.println("hash: " + this.hash);
-        printTabs(numTabs);
         System.out.println("from: " + this.senderPK);
-        printTabs(numTabs);
         System.out.println("to: " + this.receiverPK);
-        printTabs(numTabs);
         System.out.println("amount: " + this.amount);
-        printTabs(numTabs);
         System.out.println("isSigned: " + this.isSigned());
-        printTabs(numTabs);
         System.out.println("at: " + this.timestamp);
-        printTabs(numTabs);
         System.out.println("info: " + ((this.misc == null) ? "''" : this.misc));
+        System.out.println();
     }
 
     public boolean signTransaction(Wallet signer) throws NoSuchAlgorithmException, SignatureException, InvalidKeyException, InvalidKeySpecException, UnsupportedEncodingException {

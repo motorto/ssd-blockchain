@@ -78,8 +78,8 @@ public class Blockchain {
                 return false;
             } else if (!pendingTransactions.get(i).equals(newBlock.transactionsList.get(i))) {
                 System.out.println("Block add FAILED. The Transactions in the block didn't match the pending ones.");
-                pendingTransactions.get(i).printTransaction(0);
-                newBlock.transactionsList.get(i).printTransaction(0);
+                pendingTransactions.get(i).printTransaction();
+                newBlock.transactionsList.get(i).printTransaction();
                 return false;
             }
 
@@ -135,7 +135,7 @@ public class Blockchain {
     public void printBlockChain() {
         System.out.println("blockchain:");
         for (Block currentBlock : chain) {
-            currentBlock.printBlock(1);
+            currentBlock.printBlock();
         }
 
         String isChainValid = this.isValid() ? "True" : "False";

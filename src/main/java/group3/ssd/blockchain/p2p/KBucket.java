@@ -26,9 +26,7 @@ public class KBucket {
     }
 
     public void addNode(Node node) {
-        //is node is not blacklisted
-        if (!User.isBlacklisted(node))
-            lastSeen.add(node);
+        lastSeen.add(node);
     }
 
     public Node getNode(String nodeId) {

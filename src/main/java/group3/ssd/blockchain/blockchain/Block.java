@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static group3.ssd.blockchain.util.Misc.applyEncryption;
-import static group3.ssd.blockchain.util.Misc.printTabs;
 
 public class Block {
     public String hashId;
@@ -85,17 +84,14 @@ public class Block {
         return nonce;
     }
 
-    public void printBlock(int numTabs) {
-        printTabs(numTabs);
+    public void printBlock() {
+        System.out.println();
         System.out.println("hash: " + this.hash);
-        printTabs(numTabs);
         System.out.println("prev: " + this.previousHash);
-        printTabs(numTabs);
         System.out.println("nonce: " + this.nonce);
-        printTabs(numTabs);
         System.out.println("transactions:");
         for (Transaction transaction : transactionsList) {
-            transaction.printTransaction(numTabs + 1);
+            transaction.printTransaction();
             System.out.println();
         }
     }
