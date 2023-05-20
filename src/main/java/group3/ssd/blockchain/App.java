@@ -66,7 +66,7 @@ public class App {
                     if (receiverPK.equals(User.publicKey)) { //se tentar enviar para si proprio
                         System.out.println("ERRO" + "\n\n\n");
                     } else {
-                        System.out.println("Quando quer enviar?");
+                        System.out.println("Quanto quer enviar?");
                         int numberOfCoins = scan.nextInt();
 
                         if (User.wallet.getBalance() < numberOfCoins) { //Se nao tiver coins suficientes
