@@ -1,7 +1,6 @@
 package group3.ssd.blockchain.p2p;
 
-import group3.ssd.blockchain.util.Misc;
-
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -72,9 +71,9 @@ public class Kademlia {
     //distance between 2 nodes
     public static String xorDistance(String nodeHash1, String nodeHash2) {
 
-        //converto string to bit string
-        nodeHash1 = Misc.stringToBitString(nodeHash1);
-        nodeHash2 = Misc.stringToBitString(nodeHash2);
+        nodeHash1 = new BigInteger(nodeHash1, 16).toString(2);
+        nodeHash2 = new BigInteger(nodeHash2, 16).toString(2);
+
         int node1Size = nodeHash1.length();
         int node2Size = nodeHash2.length();
         String xorResult = "";
