@@ -49,11 +49,7 @@ public class User {
             } else {
                 User.blockchain = new Blockchain();
             }
-        } catch (SignatureException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (SignatureException | InvalidKeyException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         id = obtainNodeId();
@@ -165,8 +161,6 @@ public class User {
         @Override
         public void run() {
 
-            int transactionsPerBlock = Config.MAX_TRANSACTIONS_PER_BLOCK;
-
             while (true) {
                 try {
 
@@ -179,12 +173,11 @@ public class User {
 
                 if (User.blockchain.getPendingTransactions().size() >= 1) {
 
-                    String blockHashId = Misc.applyEncryption(new Date().getTime() + "");
+                    String blockHashId = Misc.applyEncryption(String.valueOf(new Date().getTime()));
                     System.out.println("mining: " + blockHashId);
 
                     User.blockchain.minePendingTransactions(User.wallet);
                     User.ledger.updateLedger(User.blockchain.getLatestBlock());
-                    //User.ledger.restartLedger();
 
                     User.shareBlock(User.blockchain.getLatestBlock(), User.id);
                     User.blockchain.printBlockChain();
