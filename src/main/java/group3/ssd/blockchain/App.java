@@ -15,7 +15,6 @@ public class App {
 
     public static void printMenu() {
         int i = 1;
-<<<<<<< HEAD
         System.out.println("Opções:\n" +
                 (i++) + "   Informação Pessoal\n" +
                 (i++) + "   Iniciar Mining\n" +
@@ -24,17 +23,6 @@ public class App {
                 (i++) + "   Ver Blockchain\n" +
                 (i++) + "   Ver Bucket\n" +
                 "Insira um número de 1 a 6:\n");
-=======
-        System.out.println("#     MENU\n" +
-                "# " + (i++) + "   Get Personal Information\n" +
-                "# " + (i++) + "   Start Mining\n" +
-                "# " + (i++) + "   Go to Auction\n" +
-                "# " + (i++) + "   Get Balance\n" +
-                "# " + (i++) + "   Print Blockchain\n" +
-                "# " + (i++) + "   Send Coins to User\n" +
-                "# " + (i++) + "   Print Bucket\n" +
-                "# Please insert an option.\n");
->>>>>>> a84435fbfafbc26e51541af9ac4b3132b7c4baf6
     }
 
     public static void main(String[] args) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException, InterruptedException {
@@ -72,16 +60,8 @@ public class App {
                 case 3: //saldo
                     User.wallet.printWalletBalance();
                     break;
-<<<<<<< HEAD
                 case 4: // enviar coin
                     System.out.println("Inserir chave publica do recetor");
-=======
-                case 5:
-                    User.blockchain.printBlockChain();
-                    break;
-                case 6:
-                    System.out.println("Introduce Receiver Public Key");
->>>>>>> a84435fbfafbc26e51541af9ac4b3132b7c4baf6
                     String receiverPK = scan.nextLine();
                     if (receiverPK.equals(User.publicKey)) { //se tentar enviar para si proprio
                         System.out.println("ERRO" + "\n\n\n");
