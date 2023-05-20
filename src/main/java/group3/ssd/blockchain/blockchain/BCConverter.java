@@ -7,6 +7,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 
+// converte objeto definido em gRPC para objetos do tipo blockchain, block, transaction
+
 public class BCConverter {
 
     public static Blockchain mkBlockChain(BlockChain bc) throws InvalidKeySpecException, NoSuchAlgorithmException {
@@ -19,7 +21,7 @@ public class BCConverter {
         return blockchain;
     }
 
-    //create block
+    //criar block
     public static Block mkBlock(group3.ssd.blockchain.p2p.grpc.Block block) {
 
         return new Block(block.getHashId(),

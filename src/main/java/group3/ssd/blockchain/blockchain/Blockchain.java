@@ -12,18 +12,20 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 
 public class Blockchain {
-    public static ArrayList<Block> chain = new ArrayList<>();
-    public static ArrayList<Transaction> pendingTransactions = new ArrayList<>(); //Transactions waiting to be added to the blockchain
+    public static ArrayList<Block> chain = new ArrayList<>(); //blocos em cadeia
+    public static ArrayList<Transaction> pendingTransactions = new ArrayList<>(); //transações pendentes
 
     public Blockchain(Wallet genesisWallet) throws InvalidKeySpecException, NoSuchAlgorithmException, SignatureException, InvalidKeyException, UnsupportedEncodingException {
         createGenesisBlock(genesisWallet);
     }
 
+    // vazio
     public Blockchain() throws InvalidKeySpecException, NoSuchAlgorithmException {
         chain = new ArrayList<>();
         pendingTransactions = new ArrayList<>();
     }
 
+    // criar cópia de outra blockchain
     public Blockchain(Blockchain oldBlockchain) {
         setChain(oldBlockchain.getChain());
         setPendingTransactions(oldBlockchain.getPendingTransactions());

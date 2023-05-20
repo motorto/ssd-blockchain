@@ -9,51 +9,49 @@ import java.util.Date;
 import static group3.ssd.blockchain.util.Misc.applyEncryption;
 
 public class Block {
-    public String hashId;
-    public String hash;
+    public String hashId; //identificador
+    public String hash; 
     public String previousHash;
     public ArrayList<Transaction> transactionsList = new ArrayList<>();
-    public int nonce = 0;
     public long timestamp;
     public String publicKey;
+    public int nonce = 0;
 
-    //When creating blocks
+    //Criar um novo bloco
     public Block(String hashId, ArrayList<Transaction> transactions, String lastBlockHash, Wallet miner) {
         this.hashId = hashId;
         this.hash = this.calculateHash();
         this.transactionsList = transactions;
         this.previousHash = lastBlockHash;
         this.timestamp = new Date().getTime();
-        //this.nonce = mineBlock();
         this.hash = calculateHash();
         this.publicKey = miner.getPublicKey();
     }
 
 
-    //When receiving blocks from other nodes
+    //Criar um bloco a partir de um bloco recebido de outro nó
     public Block(String hashId, String hash, String lastBlockHash, ArrayList<Transaction> transactions, int nonce, long timestamp, String minerPK) {
         this.hashId = hashId;
         this.transactionsList = transactions;
         this.previousHash = lastBlockHash;
         this.timestamp = timestamp;
-        this.nonce = nonce;
         this.hash = hash;
         this.publicKey = minerPK;
-    }
-
-    public boolean isValid() {
-        return this.hashId.equals(calculateHash());
+        this.nonce = nonce;
     }
 
     public int getTransactionListSize() {
         return transactionsList.size();
     }
 
+    public boolean isValid() {
+        return this.hashId.equals(calculateHash());
+    }
+
     public ArrayList<Transaction> getTransactionList() {
         return transactionsList;
     }
 
-    /**/
     public String calculateHash() {
         MerkleTree merkleTree = new MerkleTree(transactionsList);
         merkleTree.genRoot();
@@ -72,35 +70,35 @@ public class Block {
                 '}';
     }
 
+    // calcula a hash repetidamente, incrementando o nonce, até atingir mining dificulty
     public int mineBlock() {
-        System.out.println("Mining " + transactionsList.size() + " transactions...");
+        System.out.println("Numero de transações: " + transactionsList.size());
         String hashPuzzle = new String(new char[Config.MINING_DIFFICULTY]).replace('\0', '0');
         while (!this.hash.substring(0, Config.MINING_DIFFICULTY).equals(hashPuzzle)) {
             this.nonce++;
             this.hash = this.calculateHash();
-            //System.out.println(this.hash);
         }
-        System.out.println("Block Mined! Nonce to Solve proof of work:" + nonce + "\nHash Calculated: " + this.hash);
+        System.out.println("Nonce:" + nonce + "\nHash: " + this.hash);
         return nonce;
     }
 
     public void printBlock() {
         System.out.println();
         System.out.println("hash: " + this.hash);
-        System.out.println("prev: " + this.previousHash);
+        System.out.println("hash anterior: " + this.previousHash);
         System.out.println("nonce: " + this.nonce);
-        System.out.println("transactions:");
+        System.out.println("transações:");
         for (Transaction transaction : transactionsList) {
             transaction.printTransaction();
             System.out.println();
         }
     }
 
-    public boolean verify() {
-        return calculateHash().equals(hash);
-    }
-
     public String getFirstTransactionHash() {
         return transactionsList.get(0).hash;
+    }
+
+    public boolean verify() {
+        return calculateHash().equals(hash);
     }
 }
