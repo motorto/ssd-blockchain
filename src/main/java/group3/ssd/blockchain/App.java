@@ -19,8 +19,8 @@ public class App {
                 (i++) + "   Informação Pessoal\n" +
                 (i++) + "   Iniciar Mining\n" +
                 (i++) + "   Saldo\n" +
-                (i++) + "   Ver Blockchain\n" +
                 (i++) + "   Enviar Coins\n" +
+                (i++) + "   Ver Blockchain\n" +
                 (i++) + "   Ver Bucket\n" +
                 "Insira um número de 1 a 6:\n");
     }
@@ -60,10 +60,7 @@ public class App {
                 case 3: //saldo
                     User.wallet.printWalletBalance();
                     break;
-                case 4: //blockchain
-                    User.blockchain.printBlockChain();
-                    break;
-                case 5: // enviar coin
+                case 4: // enviar coin
                     System.out.println("Inserir chave publica do recetor");
                     String receiverPK = scan.nextLine();
                     if (receiverPK.equals(User.publicKey)) { //se tentar enviar para si proprio
@@ -81,6 +78,9 @@ public class App {
                         }
                     }
                     break;
+                case 5: //blockchain
+                    User.blockchain.printBlockChain();
+                    break;
                 case 6: //ver bucket
                     User.kbucket.print();
                     break;
@@ -91,4 +91,5 @@ public class App {
         }
     }
 }
+
 
