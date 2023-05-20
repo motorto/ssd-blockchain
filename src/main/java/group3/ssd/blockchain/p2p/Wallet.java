@@ -31,7 +31,7 @@ public class Wallet {
     }
 
     public double getBalance() {
-        return User.ledger.getBalance(this.publicKey);
+        return KadClient.ledger.getBalance(this.publicKey);
     }
 
     private void genKeyPair() {
@@ -51,7 +51,6 @@ public class Wallet {
 
     public byte[][] sign(String message) throws NoSuchAlgorithmException, SignatureException, InvalidKeyException, InvalidKeySpecException {
 
-        //byte[] msgHash = applyEncryption(this.privateKey.toString().concat(String.valueOf(receiverPubKey)).concat(String.valueOf(message))).getBytes();
         byte[] msgHash = applyEncryption(this.publicKey.concat(String.valueOf(message))).getBytes();
         Signature signature = Signature.getInstance("RSA");
 

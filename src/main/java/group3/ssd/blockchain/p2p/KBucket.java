@@ -53,7 +53,7 @@ public class KBucket {
     }
 
     public boolean checkNodeExistence(Node node, int proof, String pubKey) {
-        if (node.id.equals(User.id)) {
+        if (node.id.equals(KadClient.id)) {
             return true;
         }
 

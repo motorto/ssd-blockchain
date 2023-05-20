@@ -1,6 +1,6 @@
 package group3.ssd.blockchain.blockchain;
 
-import group3.ssd.blockchain.p2p.User;
+import group3.ssd.blockchain.p2p.KadClient;
 import group3.ssd.blockchain.p2p.Wallet;
 import group3.ssd.blockchain.util.Config;
 
@@ -144,10 +144,9 @@ public class Blockchain {
         }
 
         String isCValid = this.isValid() ? "True" : "False";
-        if(isCValid.equals("False")){
+        if (isCValid.equals("False")) {
             System.out.println("Cadeia não é válida");
-        }
-        else{
+        } else {
             System.out.println("Cadeia é válida");
         }
     }
@@ -170,7 +169,7 @@ public class Blockchain {
             System.out.println("Não há transações pendentes");
             return null;
         }
-        
+
         ArrayList<Transaction> newBlockTransactions = new ArrayList<>();
         if (pendingTransactionsLength >= Config.MAX_TRANSACTIONS_PER_BLOCK) {
             for (int i = 0; i < Config.MAX_TRANSACTIONS_PER_BLOCK; i++) {
@@ -184,9 +183,9 @@ public class Blockchain {
         //criar novo bloco com as transações pendentes e adicona á cadeia
         Block newBlock;
         if (chain.size() == 0) {
-            newBlock = new Block(0 + "", newBlockTransactions, "", User.wallet);
+            newBlock = new Block(0 + "", newBlockTransactions, "", KadClient.wallet);
         } else {
-            newBlock = new Block(chain.size() + "", newBlockTransactions, this.getLatestBlock().hash, User.wallet);
+            newBlock = new Block(chain.size() + "", newBlockTransactions, this.getLatestBlock().hash, KadClient.wallet);
         }
         newBlock.mineBlock();
         chain.add(newBlock);

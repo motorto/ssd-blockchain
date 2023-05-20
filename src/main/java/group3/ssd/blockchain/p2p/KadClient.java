@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class User {
+public class KadClient {
 
     public static String id;
     public static String ip;
@@ -33,21 +33,21 @@ public class User {
         return id;
     }
 
-    public User() {
+    public KadClient() {
 
     }
 
     public void setup(int node_port, String node_ip) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        User.proof = 0;
-        User.port = node_port;
-        User.ip = node_ip;
-        User.publicKey = User.wallet.getPublicKey();
-        User.ledger = new Ledger();
+        KadClient.proof = 0;
+        KadClient.port = node_port;
+        KadClient.ip = node_ip;
+        KadClient.publicKey = KadClient.wallet.getPublicKey();
+        KadClient.ledger = new Ledger();
         try {
             if (Config.knownNode.equals("")) {
-                User.blockchain = new Blockchain(User.wallet);
+                KadClient.blockchain = new Blockchain(KadClient.wallet);
             } else {
-                User.blockchain = new Blockchain();
+                KadClient.blockchain = new Blockchain();
             }
         } catch (SignatureException | InvalidKeyException | UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -58,27 +58,27 @@ public class User {
         System.out.println(Config.knownNode);
 
         if (Config.knownNode.equals("")) {
-            Config.knownNode = User.id;
+            Config.knownNode = KadClient.id;
         } else {
-            User.kbucket.addNode(new Node(Config.knownNode, node_ip, 8080));
+            KadClient.kbucket.addNode(new Node(Config.knownNode, node_ip, 8080));
             Kademlia.pingNode(new Node(Config.knownNode, node_ip, 8080));
         }
 
     }
 
     public static void startMining() {
-        User.mineBlockThread.start();
+        KadClient.mineBlockThread.start();
     }
 
     public static void startPinging() {
-        User.keepAliveThread.start();
+        KadClient.keepAliveThread.start();
     }
 
     private static String obtainNodeId() {
         String hashPuzzle = new String(new char[Config.NODE_CREATION_DIFFICULTY]).replace('\0', '0');
         do {
             proof++;
-            id = calculateHash(User.proof, User.ip, User.port, User.publicKey);
+            id = calculateHash(KadClient.proof, KadClient.ip, KadClient.port, KadClient.publicKey);
         } while (!id.substring(0, Config.MINING_DIFFICULTY).equals(hashPuzzle));
 
         return id;
@@ -105,16 +105,16 @@ public class User {
 
             if (newBlockchain != null) {
                 if (newBlockchain.isValid())
-                    User.kbucket.getNode(node.id).addSuccessfulInteraction();
+                    KadClient.kbucket.getNode(node.id).addSuccessfulInteraction();
                 else {
-                    User.kbucket.getNode(node.id).addUnsuccessfulInteraction();
+                    KadClient.kbucket.getNode(node.id).addUnsuccessfulInteraction();
                 }
             }
         }
     }
 
     public static void shareBlock(Block block, String sender) {
-        ArrayList<Node> destinations = User.kbucket.getCloneNodesList();
+        ArrayList<Node> destinations = KadClient.kbucket.getCloneNodesList();
 
         for (Node destination : destinations) {
             if (!destination.id.equals(sender))
@@ -129,10 +129,10 @@ public class User {
 
     public static void shareTransaction(Transaction transaction, String sender) {
 
-        ArrayList<Node> destinations = User.kbucket.getCloneNodesList();
+        ArrayList<Node> destinations = KadClient.kbucket.getCloneNodesList();
 
         try {
-            transaction.signTransaction(User.wallet);
+            transaction.signTransaction(KadClient.wallet);
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException |
                  SignatureException | InvalidKeySpecException | InvalidKeyException e) {
             e.printStackTrace();
@@ -171,16 +171,16 @@ public class User {
                 }
 
 
-                if (User.blockchain.getPendingTransactions().size() >= 1) {
+                if (KadClient.blockchain.getPendingTransactions().size() >= 1) {
 
                     String blockHashId = Misc.applyEncryption(String.valueOf(new Date().getTime()));
                     System.out.println("mining: " + blockHashId);
 
-                    User.blockchain.minePendingTransactions(User.wallet);
-                    User.ledger.updateLedger(User.blockchain.getLatestBlock());
+                    KadClient.blockchain.minePendingTransactions(KadClient.wallet);
+                    KadClient.ledger.updateLedger(KadClient.blockchain.getLatestBlock());
 
-                    User.shareBlock(User.blockchain.getLatestBlock(), User.id);
-                    User.blockchain.printBlockChain();
+                    KadClient.shareBlock(KadClient.blockchain.getLatestBlock(), KadClient.id);
+                    KadClient.blockchain.printBlockChain();
                 }
             }
         }
@@ -203,11 +203,11 @@ public class User {
                     e.printStackTrace();
                 }
 
-                User.evaluateTrust();
+                KadClient.evaluateTrust();
 
-                for (int i = 0; i < User.kbucket.seenSize(); i++) {
-                    if (!new PeerOperations(User.kbucket.lastSeen.get(i).ip, User.kbucket.lastSeen.get(i).port).ping()) {
-                        User.kbucket.lastSeen.remove(i);
+                for (int i = 0; i < KadClient.kbucket.seenSize(); i++) {
+                    if (!new PeerOperations(KadClient.kbucket.lastSeen.get(i).ip, KadClient.kbucket.lastSeen.get(i).port).ping()) {
+                        KadClient.kbucket.lastSeen.remove(i);
                         i--;
                     }
                 }

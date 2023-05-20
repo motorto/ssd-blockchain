@@ -11,7 +11,7 @@ public class Ledger {
     int minCoin = 15;
 
     public Ledger() {
-        userList.put(User.publicKey, minCoin);
+        userList.put(KadClient.publicKey, minCoin);
     }
 
     public Integer getBalance(String pubKey) {
@@ -20,12 +20,12 @@ public class Ledger {
 
     public void reset() {
         userList.clear();
-        userList.put(User.publicKey, minCoin);
+        userList.put(KadClient.publicKey, minCoin);
     }
 
     public void restartLedger() {
         reset();
-        for (Block block : User.blockchain.getChain()) {
+        for (Block block : KadClient.blockchain.getChain()) {
             updateLedger(block);
         }
     }

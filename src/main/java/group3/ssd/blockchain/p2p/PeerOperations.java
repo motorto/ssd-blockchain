@@ -41,7 +41,7 @@ public class PeerOperations {
         try {
             try {
 
-                KBucket_GRPC foundNodes = blockingStub.findNodes(FindNode.newBuilder().setId(User.id).setIp(User.ip).setPort(User.port).setProof(User.proof).setPubKey(User.publicKey).setTargetId(targetId).build());
+                KBucket_GRPC foundNodes = blockingStub.findNodes(FindNode.newBuilder().setId(KadClient.id).setIp(KadClient.ip).setPort(KadClient.port).setProof(KadClient.proof).setPubKey(KadClient.publicKey).setTargetId(targetId).build());
 
                 return NodeSerializable.GRPC_to_KBucket(foundNodes);
             } catch (StatusRuntimeException e) {
@@ -90,19 +90,19 @@ public class PeerOperations {
         try {
             try {
                 Ping request = Ping.newBuilder()
-                        .setId(User.id)
-                        .setIp(User.ip)
-                        .setPort(User.port)
-                        .setProof(User.proof)
-                        .setPubKey(User.publicKey)
+                        .setId(KadClient.id)
+                        .setIp(KadClient.ip)
+                        .setPort(KadClient.port)
+                        .setProof(KadClient.proof)
+                        .setPubKey(KadClient.publicKey)
                         .build();
 
                 Pong response = blockingStub.ping(request);
                 if (response.getPong()) {
                     Blockchain received = BCConverter.mkBlockChain(response.getBlockchain());
-                    if (received.getChain().size() > User.blockchain.getChain().size()) {
-                        User.blockchain = received;
-                        User.ledger.restartLedger();
+                    if (received.getChain().size() > KadClient.blockchain.getChain().size()) {
+                        KadClient.blockchain = received;
+                        KadClient.ledger.restartLedger();
                     }
                 }
                 return response.getPong();
@@ -122,11 +122,11 @@ public class PeerOperations {
     public Blockchain getBlockchain() {
         try {
             Ping request = Ping.newBuilder()
-                    .setId(User.id)
-                    .setIp(User.ip)
-                    .setPort(User.port)
-                    .setProof(User.proof)
-                    .setPubKey(User.publicKey)
+                    .setId(KadClient.id)
+                    .setIp(KadClient.ip)
+                    .setPort(KadClient.port)
+                    .setProof(KadClient.proof)
+                    .setPubKey(KadClient.publicKey)
                     .build();
 
             Pong response = blockingStub.ping(request);

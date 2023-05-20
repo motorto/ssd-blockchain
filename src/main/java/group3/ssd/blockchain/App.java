@@ -1,9 +1,9 @@
 package group3.ssd.blockchain;
 
 import group3.ssd.blockchain.blockchain.Transaction;
+import group3.ssd.blockchain.p2p.KadClient;
 import group3.ssd.blockchain.p2p.KadServer;
 import group3.ssd.blockchain.p2p.Kademlia;
-import group3.ssd.blockchain.p2p.User;
 import group3.ssd.blockchain.util.Config;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class App {
                 (i++) + "   Saldo\n" +
                 (i++) + "   Enviar Coins\n" +
                 (i++) + "   Ver Blockchain\n" +
-                (i++) + "   Ver Bucket\n" +
+                (i) + "   Ver Bucket\n" +
                 "Insira um número de 1 a 6:\n");
     }
 
@@ -33,14 +33,14 @@ public class App {
             port = 8080;
         }
 
-        User user = new User();
-        user.setup(port, "localhost");
-        User.startPinging();
+        KadClient kadClient = new KadClient();
+        kadClient.setup(port, "localhost");
+        KadClient.startPinging();
 
         KadServer server = new KadServer("localhost", port);
         server.start();
 
-        Kademlia.findNode(User.id);
+        Kademlia.findNode(KadClient.id);
 
         Scanner scan = new Scanner(System.in);
 
@@ -50,39 +50,39 @@ public class App {
             scan.nextLine();
             switch (option) {
                 case 1: //informação pessoal
-                    System.out.println("ID: " + User.id);
-                    System.out.println(User.ip + ":" + User.port);
-                    System.out.println("Chave Publica: " + User.publicKey);
+                    System.out.println("ID: " + KadClient.id);
+                    System.out.println(KadClient.ip + ":" + KadClient.port);
+                    System.out.println("Chave Publica: " + KadClient.publicKey);
                     break;
                 case 2: //iniciar mining
-                    User.startMining();
+                    KadClient.startMining();
                     break;
                 case 3: //saldo
-                    User.wallet.printWalletBalance();
+                    KadClient.wallet.printWalletBalance();
                     break;
                 case 4: // enviar coin
                     System.out.println("Inserir chave publica do recetor");
                     String receiverPK = scan.nextLine();
-                    if (receiverPK.equals(User.publicKey)) { //se tentar enviar para si proprio
+                    if (receiverPK.equals(KadClient.publicKey)) { //se tentar enviar para si proprio
                         System.out.println("ERRO" + "\n\n\n");
                     } else {
                         System.out.println("Quanto quer enviar?");
                         int numberOfCoins = scan.nextInt();
 
-                        if (User.wallet.getBalance() < numberOfCoins) { //Se nao tiver coins suficientes
+                        if (KadClient.wallet.getBalance() < numberOfCoins) { //Se nao tiver coins suficientes
                             System.out.println("ERRO." + "\n\n\n");
                         } else {
                             System.out.println("RPK: " + receiverPK);
-                            Transaction transaction = new Transaction(User.publicKey, receiverPK, numberOfCoins);
-                            User.shareTransaction(transaction, User.id);
+                            Transaction transaction = new Transaction(KadClient.publicKey, receiverPK, numberOfCoins);
+                            KadClient.shareTransaction(transaction, KadClient.id);
                         }
                     }
                     break;
                 case 5: //blockchain
-                    User.blockchain.printBlockChain();
+                    KadClient.blockchain.printBlockChain();
                     break;
                 case 6: //ver bucket
-                    User.kbucket.print();
+                    KadClient.kbucket.print();
                     break;
                 default:
                     System.out.println("ERRO" + "\n\n\n");

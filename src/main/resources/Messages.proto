@@ -6,8 +6,6 @@ option java_outer_classname = "BlockchainGRPCProto";
 option objc_class_prefix = "BC";
 
 package blockchain;
-import "google/protobuf/any.proto";
-import "google/protobuf/empty.proto";
 
 service Peer {
 
@@ -17,8 +15,6 @@ service Peer {
   rpc broadcast_transaction (Transaction) returns (Status){};
   rpc broadcast_blockchain (BlockChain) returns (Status){}
   rpc findNodes(FindNode) returns (KBucket_GRPC) {}
-
-
 }
 
 message Ping{

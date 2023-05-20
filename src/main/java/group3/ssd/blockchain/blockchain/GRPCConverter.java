@@ -1,7 +1,7 @@
 package group3.ssd.blockchain.blockchain;
 
 import com.google.protobuf.ByteString;
-import group3.ssd.blockchain.p2p.User;
+import group3.ssd.blockchain.p2p.KadClient;
 import group3.ssd.blockchain.p2p.grpc.BlockChain;
 import group3.ssd.blockchain.p2p.grpc.TransactionsList;
 
@@ -30,7 +30,7 @@ public class GRPCConverter {
                 .setTransactionsList(mkTransactionList(block.transactionsList))
                 .setNonce(block.nonce)
                 .setPublicKey(block.publicKey)
-                .setNodeId(User.id)
+                .setNodeId(KadClient.id)
                 .build();
     }
 
@@ -60,7 +60,7 @@ public class GRPCConverter {
                 .setTimestamp(t.timestamp)
                 .setAmount(t.amount)
                 .setMisc(t.misc)
-                .setNodeId(User.id)
+                .setNodeId(KadClient.id)
                 .build();
         return new_t;
     }

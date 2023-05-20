@@ -12,12 +12,12 @@ public class Kademlia {
     }
 
     public static boolean checkNodeValidity(String id, String ip, int port, int proof, String pubKey) {
-        return User.calculateNeighbourHash(ip, port, proof, pubKey).equals(id);
+        return KadClient.calculateNeighbourHash(ip, port, proof, pubKey).equals(id);
     }
 
     public static void findNode(String targetId) {
 
-        ArrayList<Node> closestNodes = User.kbucket.getNClosestNodes(targetId, User.kbucket.lastSeen);
+        ArrayList<Node> closestNodes = KadClient.kbucket.getNClosestNodes(targetId, KadClient.kbucket.lastSeen);
         ArrayList<Node> foundNodes = new ArrayList<>();
         ArrayList<Node> lastDiscovered = null;
 
@@ -40,7 +40,7 @@ public class Kademlia {
             }
 
             removeRepeated(foundNodes);
-            User.kbucket.checkNodeListExistence(foundNodes);
+            KadClient.kbucket.checkNodeListExistence(foundNodes);
 
 
             if (lastDiscovered == null) {
@@ -52,7 +52,7 @@ public class Kademlia {
             lastDiscovered.clear();
             lastDiscovered.addAll(foundNodes);
 
-            closestNodes = User.kbucket.getNeighboursByDistance(targetId, foundNodes);
+            closestNodes = KadClient.kbucket.getNeighboursByDistance(targetId, foundNodes);
             foundNodes.clear();
 
         }
