@@ -13,10 +13,8 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-//Operations made by the client side of the peer
 public class PeerOperations {
 
-    private String ip;
     public PeerGrpc.PeerBlockingStub blockingStub;
     public int port;
     private final ManagedChannel channel;
@@ -26,7 +24,6 @@ public class PeerOperations {
                 .usePlaintext()
                 .build());
         this.port = port;
-        this.ip = ip;
     }
 
     PeerOperations(ManagedChannel channel) {
@@ -45,9 +42,8 @@ public class PeerOperations {
             try {
 
                 KBucket_GRPC foundNodes = blockingStub.findNodes(FindNode.newBuilder().setId(User.id).setIp(User.ip).setPort(User.port).setProof(User.proof).setPubKey(User.publicKey).setTargetId(targetId).build());
-                ArrayList<Node> nodeList = NodeSerializable.GRPC_to_KBucket(foundNodes);
 
-                return nodeList;
+                return NodeSerializable.GRPC_to_KBucket(foundNodes);
             } catch (StatusRuntimeException e) {
 
                 return null;
@@ -64,7 +60,7 @@ public class PeerOperations {
     public void sendBlock(group3.ssd.blockchain.blockchain.Block b) {
         try {
             Block request = GRPCConverter.mkBlock(b);
-            Status s = blockingStub.broadcastBlock(request);
+            blockingStub.broadcastBlock(request);
         } finally {
             try {
                 PeerOperations.this.shutdown();
@@ -79,7 +75,7 @@ public class PeerOperations {
 
             Transaction request = GRPCConverter.mkTransaction(t);
 
-            Status s = blockingStub.broadcastTransaction(request);
+            blockingStub.broadcastTransaction(request);
 
         } finally {
             try {
@@ -110,9 +106,7 @@ public class PeerOperations {
                     }
                 }
                 return response.getPong();
-            } catch (InvalidKeySpecException e) {
-                e.printStackTrace();
-            } catch (NoSuchAlgorithmException e) {
+            } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
         } finally {
@@ -140,9 +134,7 @@ public class PeerOperations {
                 Blockchain received = null;
                 try {
                     received = BCConverter.mkBlockChain(response.getBlockchain());
-                } catch (InvalidKeySpecException e) {
-                    e.printStackTrace();
-                } catch (NoSuchAlgorithmException e) {
+                } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
                 return received;
