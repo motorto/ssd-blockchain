@@ -9,6 +9,7 @@ import group3.ssd.blockchain.util.Config;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class App {
@@ -21,15 +22,16 @@ public class App {
                 (i++) + "   Saldo\n" +
                 (i++) + "   Enviar Coins\n" +
                 (i++) + "   Ver Blockchain\n" +
-                (i) + "   Ver Bucket\n" +
+                (i++) + "   Ver Bucket\n" +
+                (i) + "   Sair\n" +
                 "Insira um número de 1 a 6:\n");
     }
 
-    public static void main(String[] args) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException, InterruptedException {
+    public static void main(String[] args) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {
 
         int port = 8086;
 
-        if (Config.knownNode == "") {
+        if (Objects.equals(Config.knownNode, "")) {
             port = 8080;
         }
 
@@ -83,6 +85,9 @@ public class App {
                     break;
                 case 6: //ver bucket
                     KadClient.kbucket.print();
+                    break;
+                case 7: // Sair
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("ERRO" + "\n\n\n");
