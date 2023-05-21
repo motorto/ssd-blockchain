@@ -1,6 +1,5 @@
-package group3.ssd.blockchain.blockchain;
+package group3.ssd.blockchain.transactions;
 
-import group3.ssd.blockchain.p2p.Wallet;
 import group3.ssd.blockchain.util.Misc;
 
 import java.io.UnsupportedEncodingException;
@@ -58,10 +57,9 @@ public class Transaction {
         System.out.println("de: " + this.senderPK);
         System.out.println("para: " + this.receiverPK);
         System.out.println("valor: " + this.amount);
-        if(this.isSigned()){
+        if (this.isSigned()) {
             System.out.print("Está assinado");
-        }
-        else{
+        } else {
             System.out.print("Não está assinado");
         }
         System.out.println("tempo: " + this.timestamp);
@@ -85,16 +83,15 @@ public class Transaction {
     //verifica igualdade das transações
     public boolean equals(Transaction transaction) {
 
-        if(this.hash.equals(transaction.hash) &&
+        if (this.hash.equals(transaction.hash) &&
                 this.senderPK.equals(transaction.senderPK) &&
                 this.receiverPK.equals(transaction.receiverPK) &&
                 Arrays.equals(this.signature, transaction.signature) &&
                 this.amount == transaction.amount &&
                 this.timestamp == transaction.timestamp &&
-                this.misc.equals(transaction.misc)){
+                this.misc.equals(transaction.misc)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }

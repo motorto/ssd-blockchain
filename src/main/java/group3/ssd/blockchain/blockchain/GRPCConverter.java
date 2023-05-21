@@ -4,6 +4,7 @@ import com.google.protobuf.ByteString;
 import group3.ssd.blockchain.p2p.KadClient;
 import group3.ssd.blockchain.p2p.grpc.BlockChain;
 import group3.ssd.blockchain.p2p.grpc.TransactionsList;
+import group3.ssd.blockchain.transactions.Transaction;
 
 import java.util.ArrayList;
 

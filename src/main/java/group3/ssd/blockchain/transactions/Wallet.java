@@ -1,7 +1,7 @@
-package group3.ssd.blockchain.p2p;
+package group3.ssd.blockchain.transactions;
 
+import group3.ssd.blockchain.p2p.KadClient;
 import group3.ssd.blockchain.util.Config;
-import group3.ssd.blockchain.util.Misc;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Base64;
 
@@ -37,7 +37,7 @@ public class Wallet {
     private void genKeyPair() {
         try {
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "BC");
-            SecureRandom random = Misc.createFixedRandom();
+            SecureRandom random = new FixedRand();
             keyGen.initialize(Config.KEY_SIZE, random);
             KeyPair keyPair = keyGen.generateKeyPair();
             PrivateKey privateKey = keyPair.getPrivate();
@@ -70,6 +70,21 @@ public class Wallet {
 
     public String getPublicKey() {
         return publicKey;
+    }
+
+    private static class FixedRand extends SecureRandom {
+
+        MessageDigest sha;
+        byte[] state;
+
+        FixedRand() {
+            try {
+                this.sha = MessageDigest.getInstance(Config.HASH_TYPE);
+                this.state = sha.digest();
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException("Couldn't find " + Config.HASH_TYPE);
+            }
+        }
     }
 
 }

@@ -100,7 +100,7 @@ public class KadServer {
         @Override
         public void broadcastTransaction(Transaction request, StreamObserver<Status> responseObserver) {
 
-            group3.ssd.blockchain.blockchain.Transaction new_transaction = BCConverter.mkTransaction(request);
+            group3.ssd.blockchain.transactions.Transaction new_transaction = BCConverter.mkTransaction(request);
 
             if (Blockchain.pendingTransactions.size() == 0) {
 
