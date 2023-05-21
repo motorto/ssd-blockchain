@@ -52,6 +52,7 @@ public class KadClient {
         } catch (SignatureException | InvalidKeyException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+
         id = obtainNodeId();
 
 
@@ -75,13 +76,7 @@ public class KadClient {
     }
 
     private static String obtainNodeId() {
-        String hashPuzzle = new String(new char[Config.NODE_CREATION_DIFFICULTY]).replace('\0', '0');
-        do {
-            proof++;
-            id = calculateHash(KadClient.proof, KadClient.ip, KadClient.port, KadClient.publicKey);
-        } while (!id.substring(0, Config.MINING_DIFFICULTY).equals(hashPuzzle));
-
-        return id;
+        return calculateHash(KadClient.proof, KadClient.ip, KadClient.port, KadClient.publicKey);
     }
 
     private static String calculateHash(int proof, String ip, int port, String publicKey) {
@@ -139,7 +134,6 @@ public class KadClient {
         }
 
         Blockchain.pendingTransactions.add(transaction);
-
 
         for (Node destination : destinations) {
             System.out.println(destination.ip + ":" + destination.port);
