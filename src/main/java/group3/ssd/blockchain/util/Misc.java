@@ -2,8 +2,6 @@ package group3.ssd.blockchain.util;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 
 public class Misc {
 
@@ -22,25 +20,6 @@ public class Misc {
             return hexString.toString();
         } catch (Exception ex) {
             throw new RuntimeException(ex);
-        }
-    }
-
-    public static SecureRandom createFixedRandom() {
-        return new FixedRand();
-    }
-
-    private static class FixedRand extends SecureRandom {
-
-        MessageDigest sha;
-        byte[] state;
-
-        FixedRand() {
-            try {
-                this.sha = MessageDigest.getInstance(Config.HASH_TYPE);
-                this.state = sha.digest();
-            } catch (NoSuchAlgorithmException e) {
-                throw new RuntimeException("Couldn't find " + Config.HASH_TYPE);
-            }
         }
     }
 
