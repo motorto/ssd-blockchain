@@ -27,6 +27,7 @@ public class KadClient {
     public static Blockchain blockchain;
     public static Ledger ledger;
     public static MineBlockThread mineBlockThread = new MineBlockThread();
+    private static boolean alreadyRunningMineBlockThread = false;
     public static KeepAliveThread keepAliveThread = new KeepAliveThread();
 
     public String getHash() {
@@ -68,7 +69,12 @@ public class KadClient {
     }
 
     public static void startMining() {
-        KadClient.mineBlockThread.start();
+        if (!alreadyRunningMineBlockThread) {
+            alreadyRunningMineBlockThread = true;
+            KadClient.mineBlockThread.start();
+        } else {
+            System.out.println("Already Mining");
+        }
     }
 
     public static void startPinging() {
