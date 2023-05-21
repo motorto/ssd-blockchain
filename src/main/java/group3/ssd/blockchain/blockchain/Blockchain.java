@@ -81,6 +81,7 @@ public class Blockchain {
             return false;
         }
         int transactionSize = newBlock.getTransactionListSize();
+
         for (int i = 0; i < transactionSize; i++) {
             System.out.println(pendingTransactions.size());
             if (pendingTransactions.size() == 0) {
@@ -193,6 +194,5 @@ public class Blockchain {
         pendingTransactions.subList(0, newBlockTransactions.size()).clear();
         System.out.println("FEITO");
         return newBlock;
-
     }
 }

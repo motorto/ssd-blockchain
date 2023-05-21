@@ -58,9 +58,9 @@ public class Transaction {
         System.out.println("para: " + this.receiverPK);
         System.out.println("valor: " + this.amount);
         if (this.isSigned()) {
-            System.out.print("Está assinado");
+            System.out.println("Está assinado");
         } else {
-            System.out.print("Não está assinado");
+            System.out.println("Não está assinado");
         }
         System.out.println("tempo: " + this.timestamp);
         System.out.println("info: " + ((this.misc == null) ? "''" : this.misc));

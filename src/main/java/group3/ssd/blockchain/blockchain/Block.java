@@ -21,7 +21,6 @@ public class Block {
     //Criar um novo bloco
     public Block(String hashId, ArrayList<Transaction> transactions, String lastBlockHash, Wallet miner) {
         this.hashId = hashId;
-        this.hash = this.calculateHash();
         this.transactionsList = transactions;
         this.previousHash = lastBlockHash;
         this.timestamp = new Date().getTime();
@@ -93,10 +92,6 @@ public class Block {
             transaction.printTransaction();
             System.out.println();
         }
-    }
-
-    public String getFirstTransactionHash() {
-        return transactionsList.get(0).hash;
     }
 
     public boolean verify() {

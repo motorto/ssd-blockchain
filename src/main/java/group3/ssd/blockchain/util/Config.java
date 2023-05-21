@@ -8,6 +8,6 @@ public class Config {
     public static int KEY_SIZE = 1024;
     public static final int MAX_TRANSACTIONS_PER_BLOCK = 8;
     public static final int MINING_REWARD = 1;
-    //    public static String knownNode = "00e907311d6a8e71458bec6c9019a9ab43bb9d73ae5fe3b5038a319496c15113";
+    //    public static String knownNode = "68877c08a35cd7e60bcd2ab63082c93f79238d1b487fc13a645c0b7dbe488b18";
     public static String knownNode = "";
 }

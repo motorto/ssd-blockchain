@@ -27,7 +27,7 @@ public class Wallet {
 
     public void printWalletBalance() {
         System.out.print("Your account balance is: ");
-        System.out.print(getBalance());
+        System.out.println(getBalance());
     }
 
     public double getBalance() {
