@@ -1,8 +1,8 @@
-package group3.ssd.blockchain.p2p;
+package group19.ssd.blockchain.p2p;
 
-import group3.ssd.blockchain.blockchain.Block;
-import group3.ssd.blockchain.transactions.Transaction;
-import group3.ssd.blockchain.util.Config;
+import group19.ssd.blockchain.blockchain.Block;
+import group19.ssd.blockchain.transactions.Transaction;
+import group19.ssd.blockchain.util.Config;
 
 import java.util.Hashtable;
 

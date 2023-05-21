@@ -1,9 +1,9 @@
-package group3.ssd.blockchain.blockchain;
+package group19.ssd.blockchain.blockchain;
 
-import group3.ssd.blockchain.p2p.KadClient;
-import group3.ssd.blockchain.transactions.Transaction;
-import group3.ssd.blockchain.transactions.Wallet;
-import group3.ssd.blockchain.util.Config;
+import group19.ssd.blockchain.p2p.KadClient;
+import group19.ssd.blockchain.transactions.Transaction;
+import group19.ssd.blockchain.transactions.Wallet;
+import group19.ssd.blockchain.util.Config;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;

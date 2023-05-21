@@ -1,4 +1,4 @@
-package group3.ssd.blockchain.util;
+package group19.ssd.blockchain.util;
 
 public class Config {
     public static int MINING_DIFFICULTY = 2;

@@ -1,7 +1,7 @@
-package group3.ssd.blockchain.p2p;
+package group19.ssd.blockchain.p2p;
 
-import group3.ssd.blockchain.p2p.grpc.KBucket_GRPC;
-import group3.ssd.blockchain.p2p.grpc.Node_GRPC;
+import group19.ssd.blockchain.p2p.grpc.KBucket_GRPC;
+import group19.ssd.blockchain.p2p.grpc.Node_GRPC;
 
 import java.util.ArrayList;
 

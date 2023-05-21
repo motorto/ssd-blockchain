@@ -1,10 +1,10 @@
-package group3.ssd.blockchain;
+package group19.ssd.blockchain;
 
-import group3.ssd.blockchain.p2p.KadClient;
-import group3.ssd.blockchain.p2p.KadServer;
-import group3.ssd.blockchain.p2p.Kademlia;
-import group3.ssd.blockchain.transactions.Transaction;
-import group3.ssd.blockchain.util.Config;
+import group19.ssd.blockchain.p2p.KadClient;
+import group19.ssd.blockchain.p2p.KadServer;
+import group19.ssd.blockchain.p2p.Kademlia;
+import group19.ssd.blockchain.transactions.Transaction;
+import group19.ssd.blockchain.util.Config;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;

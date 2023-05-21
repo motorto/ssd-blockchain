@@ -1,4 +1,4 @@
-package group3.ssd.blockchain;
+package group19.ssd.blockchain;
 
 import org.junit.Test;
 

@@ -1,9 +1,9 @@
-package group3.ssd.blockchain.p2p;
+package group19.ssd.blockchain.p2p;
 
-import group3.ssd.blockchain.blockchain.BCConverter;
-import group3.ssd.blockchain.blockchain.Blockchain;
-import group3.ssd.blockchain.blockchain.GRPCConverter;
-import group3.ssd.blockchain.p2p.grpc.*;
+import group19.ssd.blockchain.blockchain.BCConverter;
+import group19.ssd.blockchain.blockchain.Blockchain;
+import group19.ssd.blockchain.blockchain.GRPCConverter;
+import group19.ssd.blockchain.p2p.grpc.*;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
@@ -81,7 +81,7 @@ public class KadServer {
 
         @Override
         public void broadcastBlock(Block request, StreamObserver<Status> responseObserver) {
-            group3.ssd.blockchain.blockchain.Block new_block = BCConverter.mkBlock(request);
+            group19.ssd.blockchain.blockchain.Block new_block = BCConverter.mkBlock(request);
             if (!(KadClient.blockchain.getLatestBlock().hash).equals(new_block.hash)) {
                 KadClient.blockchain.addBlock(new_block);
                 KadClient.kbucket.getNode(request.getNodeId()).addSuccessfulInteraction();
@@ -100,7 +100,7 @@ public class KadServer {
         @Override
         public void broadcastTransaction(Transaction request, StreamObserver<Status> responseObserver) {
 
-            group3.ssd.blockchain.transactions.Transaction new_transaction = BCConverter.mkTransaction(request);
+            group19.ssd.blockchain.transactions.Transaction new_transaction = BCConverter.mkTransaction(request);
 
             if (Blockchain.pendingTransactions.size() == 0) {
 

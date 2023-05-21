@@ -1,4 +1,4 @@
-package group3.ssd.blockchain.util;
+package group19.ssd.blockchain.util;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

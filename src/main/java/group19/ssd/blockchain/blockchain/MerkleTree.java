@@ -1,11 +1,10 @@
-package group3.ssd.blockchain.blockchain;
+package group19.ssd.blockchain.blockchain;
 
-import group3.ssd.blockchain.transactions.Transaction;
-import group3.ssd.blockchain.util.Config;
+import group19.ssd.blockchain.transactions.Transaction;
+import group19.ssd.blockchain.util.Config;
+import group19.ssd.blockchain.util.Misc;
 
 import java.util.ArrayList;
-
-import static group3.ssd.blockchain.util.Misc.applyEncryption;
 
 //Merkle para verificar integridade dos dados
 public class MerkleTree {
@@ -51,7 +50,7 @@ public class MerkleTree {
                 right = tempHashList.get(index);
             }
 
-            String all = applyEncryption(left + right);
+            String all = Misc.applyEncryption(left + right);
             newHashList.add(all);
             index++;
 

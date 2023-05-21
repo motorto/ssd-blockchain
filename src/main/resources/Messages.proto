@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "group3.ssd.blockchain.p2p.grpc";
+option java_package = "group19.ssd.blockchain.p2p.grpc";
 option java_outer_classname = "BlockchainGRPCProto";
 option objc_class_prefix = "BC";
 

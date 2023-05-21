@@ -1,6 +1,6 @@
-package group3.ssd.blockchain.transactions;
+package group19.ssd.blockchain.transactions;
 
-import group3.ssd.blockchain.util.Misc;
+import group19.ssd.blockchain.util.Misc;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;

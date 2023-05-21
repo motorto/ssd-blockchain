@@ -1,10 +1,10 @@
-package group3.ssd.blockchain.blockchain;
+package group19.ssd.blockchain.blockchain;
 
 import com.google.protobuf.ByteString;
-import group3.ssd.blockchain.p2p.KadClient;
-import group3.ssd.blockchain.p2p.grpc.BlockChain;
-import group3.ssd.blockchain.p2p.grpc.TransactionsList;
-import group3.ssd.blockchain.transactions.Transaction;
+import group19.ssd.blockchain.p2p.KadClient;
+import group19.ssd.blockchain.p2p.grpc.BlockChain;
+import group19.ssd.blockchain.p2p.grpc.Transaction;
+import group19.ssd.blockchain.p2p.grpc.TransactionsList;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ public class GRPCConverter {
 
     //converter blockchain
     public static BlockChain mkBlockChain(Blockchain bc) {
-        ArrayList<group3.ssd.blockchain.p2p.grpc.Block> Bchain = new ArrayList<>();
+        ArrayList<group19.ssd.blockchain.p2p.grpc.Block> Bchain = new ArrayList<>();
         for (Block b : bc.chain) {
             Bchain.add(mkBlock(b));
         }
@@ -21,9 +21,9 @@ public class GRPCConverter {
     }
 
     //converter bloco
-    public static group3.ssd.blockchain.p2p.grpc.Block mkBlock(Block block) {
+    public static group19.ssd.blockchain.p2p.grpc.Block mkBlock(Block block) {
 
-        return group3.ssd.blockchain.p2p.grpc.Block.newBuilder()
+        return group19.ssd.blockchain.p2p.grpc.Block.newBuilder()
                 .setHashId(block.hashId)
                 .setHash(block.hash)
                 .setPreviousHash(block.previousHash)
@@ -36,10 +36,10 @@ public class GRPCConverter {
     }
 
     //converter lista de transações
-    public static TransactionsList mkTransactionList(ArrayList<Transaction> transactions) {
-        ArrayList<group3.ssd.blockchain.p2p.grpc.Transaction> tlist = new ArrayList<>();
-        for (Transaction t : transactions) {
-            tlist.add(group3.ssd.blockchain.p2p.grpc.Transaction.newBuilder()
+    public static TransactionsList mkTransactionList(ArrayList<group19.ssd.blockchain.transactions.Transaction> transactions) {
+        ArrayList<Transaction> tlist = new ArrayList<>();
+        for (group19.ssd.blockchain.transactions.Transaction t : transactions) {
+            tlist.add(Transaction.newBuilder()
                     .setHash(t.hash)
                     .setSenderPK(t.senderPK)
                     .setReceiverPK(t.receiverPK)
@@ -52,8 +52,8 @@ public class GRPCConverter {
     }
 
     // converter transação
-    public static group3.ssd.blockchain.p2p.grpc.Transaction mkTransaction(Transaction t) {
-        group3.ssd.blockchain.p2p.grpc.Transaction new_t = group3.ssd.blockchain.p2p.grpc.Transaction.newBuilder()
+    public static Transaction mkTransaction(group19.ssd.blockchain.transactions.Transaction t) {
+        Transaction new_t = Transaction.newBuilder()
                 .setHash(t.hash)
                 .setSenderPK(t.senderPK)
                 .setReceiverPK(t.receiverPK)

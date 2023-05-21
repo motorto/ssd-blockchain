@@ -1,4 +1,4 @@
-package group3.ssd.blockchain.p2p;
+package group19.ssd.blockchain.p2p;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

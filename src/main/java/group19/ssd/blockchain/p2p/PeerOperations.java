@@ -1,9 +1,11 @@
-package group3.ssd.blockchain.p2p;
+package group19.ssd.blockchain.p2p;
 
-import group3.ssd.blockchain.blockchain.BCConverter;
-import group3.ssd.blockchain.blockchain.Blockchain;
-import group3.ssd.blockchain.blockchain.GRPCConverter;
-import group3.ssd.blockchain.p2p.grpc.*;
+import group19.ssd.blockchain.blockchain.BCConverter;
+import group19.ssd.blockchain.blockchain.Block;
+import group19.ssd.blockchain.blockchain.Blockchain;
+import group19.ssd.blockchain.blockchain.GRPCConverter;
+import group19.ssd.blockchain.p2p.grpc.*;
+import group19.ssd.blockchain.transactions.Transaction;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
@@ -57,9 +59,9 @@ public class PeerOperations {
         }
     }
 
-    public void sendBlock(group3.ssd.blockchain.blockchain.Block b) {
+    public void sendBlock(Block b) {
         try {
-            Block request = GRPCConverter.mkBlock(b);
+            group19.ssd.blockchain.p2p.grpc.Block request = GRPCConverter.mkBlock(b);
             blockingStub.broadcastBlock(request);
         } finally {
             try {
@@ -70,10 +72,10 @@ public class PeerOperations {
         }
     }
 
-    public void sendTransaction(group3.ssd.blockchain.transactions.Transaction t) {
+    public void sendTransaction(Transaction t) {
         try {
 
-            Transaction request = GRPCConverter.mkTransaction(t);
+            group19.ssd.blockchain.p2p.grpc.Transaction request = GRPCConverter.mkTransaction(t);
 
             blockingStub.broadcastTransaction(request);
 

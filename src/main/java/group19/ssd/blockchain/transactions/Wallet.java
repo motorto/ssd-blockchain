@@ -1,7 +1,8 @@
-package group3.ssd.blockchain.transactions;
+package group19.ssd.blockchain.transactions;
 
-import group3.ssd.blockchain.p2p.KadClient;
-import group3.ssd.blockchain.util.Config;
+import group19.ssd.blockchain.p2p.KadClient;
+import group19.ssd.blockchain.util.Config;
+import group19.ssd.blockchain.util.Misc;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Base64;
 
@@ -9,8 +10,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
-
-import static group3.ssd.blockchain.util.Misc.applyEncryption;
 
 public class Wallet {
 
@@ -51,7 +50,7 @@ public class Wallet {
 
     public byte[][] sign(String message) throws NoSuchAlgorithmException, SignatureException, InvalidKeyException, InvalidKeySpecException {
 
-        byte[] msgHash = applyEncryption(this.publicKey.concat(String.valueOf(message))).getBytes();
+        byte[] msgHash = Misc.applyEncryption(this.publicKey.concat(String.valueOf(message))).getBytes();
         Signature signature = Signature.getInstance("RSA");
 
         System.out.println(privateKey);
