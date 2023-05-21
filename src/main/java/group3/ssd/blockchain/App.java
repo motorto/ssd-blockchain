@@ -1,9 +1,9 @@
 package group3.ssd.blockchain;
 
-import group3.ssd.blockchain.blockchain.Transaction;
 import group3.ssd.blockchain.p2p.KadClient;
 import group3.ssd.blockchain.p2p.KadServer;
 import group3.ssd.blockchain.p2p.Kademlia;
+import group3.ssd.blockchain.transactions.Transaction;
 import group3.ssd.blockchain.util.Config;
 
 import java.io.IOException;

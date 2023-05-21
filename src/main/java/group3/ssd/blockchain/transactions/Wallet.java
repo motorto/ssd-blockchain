@@ -1,5 +1,6 @@
-package group3.ssd.blockchain.p2p;
+package group3.ssd.blockchain.transactions;
 
+import group3.ssd.blockchain.p2p.KadClient;
 import group3.ssd.blockchain.util.Config;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Base64;

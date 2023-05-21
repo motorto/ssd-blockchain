@@ -2,7 +2,8 @@ package group3.ssd.blockchain.p2p;
 
 import group3.ssd.blockchain.blockchain.Block;
 import group3.ssd.blockchain.blockchain.Blockchain;
-import group3.ssd.blockchain.blockchain.Transaction;
+import group3.ssd.blockchain.transactions.Transaction;
+import group3.ssd.blockchain.transactions.Wallet;
 import group3.ssd.blockchain.util.Config;
 import group3.ssd.blockchain.util.Misc;
 

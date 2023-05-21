@@ -1,6 +1,7 @@
 package group3.ssd.blockchain.blockchain;
 
-import group3.ssd.blockchain.p2p.Wallet;
+import group3.ssd.blockchain.transactions.Transaction;
+import group3.ssd.blockchain.transactions.Wallet;
 import group3.ssd.blockchain.util.Config;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import static group3.ssd.blockchain.util.Misc.applyEncryption;
 
 public class Block {
     public String hashId; //identificador
-    public String hash; 
+    public String hash;
     public String previousHash;
     public ArrayList<Transaction> transactionsList = new ArrayList<>();
     public long timestamp;

@@ -70,7 +70,7 @@ public class PeerOperations {
         }
     }
 
-    public void sendTransaction(group3.ssd.blockchain.blockchain.Transaction t) {
+    public void sendTransaction(group3.ssd.blockchain.transactions.Transaction t) {
         try {
 
             Transaction request = GRPCConverter.mkTransaction(t);
