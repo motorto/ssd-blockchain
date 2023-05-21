@@ -78,42 +78,40 @@ public final class BlockchainGRPCProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016Messages.proto\022\nblockchain\032\031google/pro" +
-      "tobuf/any.proto\032\033google/protobuf/empty.p" +
-      "roto\"K\n\004Ping\022\n\n\002id\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004" +
-      "port\030\003 \001(\005\022\r\n\005proof\030\004 \001(\005\022\016\n\006pubKey\030\005 \001(" +
-      "\t\"@\n\004Pong\022\014\n\004pong\030\001 \001(\010\022*\n\nblockchain\030\002 " +
-      "\001(\0132\026.blockchain.BlockChain\"$\n\010IPAddres\022" +
-      "\n\n\002ip\030\001 \001(\t\022\014\n\004port\030\002 \001(\t\"i\n\nBlockChain\022" +
-      " \n\005chain\030\001 \003(\0132\021.blockchain.Block\0229\n\023pen" +
-      "dingTransactions\030\002 \001(\0132\034.blockchain.Tran" +
-      "sactionsList\"\270\001\n\005Block\022\016\n\006hashId\030\001 \001(\t\022\014" +
-      "\n\004hash\030\002 \001(\t\022\024\n\014previousHash\030\003 \001(\t\0226\n\020tr" +
-      "ansactionsList\030\004 \001(\0132\034.blockchain.Transa" +
-      "ctionsList\022\r\n\005nonce\030\005 \001(\005\022\021\n\ttimestamp\030\006" +
-      " \001(\003\022\021\n\tpublicKey\030\007 \001(\t\022\016\n\006nodeId\030\010 \001(\t\"" +
-      "D\n\020TransactionsList\0220\n\017transactionList\030\001" +
-      " \003(\0132\027.blockchain.Transaction\"\225\001\n\013Transa" +
-      "ction\022\014\n\004hash\030\001 \001(\t\022\020\n\010senderPK\030\002 \001(\t\022\022\n" +
-      "\nreceiverPK\030\003 \001(\t\022\021\n\tsignature\030\004 \001(\014\022\021\n\t" +
-      "timestamp\030\005 \001(\003\022\016\n\006amount\030\006 \001(\005\022\014\n\004misc\030" +
-      "\007 \001(\t\022\016\n\006nodeId\030\010 \001(\t\"\030\n\006Status\022\016\n\006statu" +
-      "s\030\001 \001(\t\"a\n\010FindNode\022\n\n\002id\030\001 \001(\t\022\n\n\002ip\030\002 " +
-      "\001(\t\022\014\n\004port\030\003 \001(\005\022\r\n\005proof\030\004 \001(\005\022\016\n\006pubK" +
-      "ey\030\005 \001(\t\022\020\n\010targetId\030\006 \001(\t\"1\n\tNode_GRPC\022" +
-      "\n\n\002id\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\"6\n" +
-      "\014KBucket_GRPC\022&\n\007kbucket\030\001 \003(\0132\025.blockch" +
-      "ain.Node_GRPC2\275\002\n\004Peer\022,\n\004ping\022\020.blockch" +
-      "ain.Ping\032\020.blockchain.Pong\"\000\022:\n\017broadcas" +
-      "t_block\022\021.blockchain.Block\032\022.blockchain." +
-      "Status\"\000\022F\n\025broadcast_transaction\022\027.bloc" +
-      "kchain.Transaction\032\022.blockchain.Status\"\000" +
-      "\022D\n\024broadcast_blockchain\022\026.blockchain.Bl" +
-      "ockChain\032\022.blockchain.Status\"\000\022=\n\tfindNo" +
-      "des\022\024.blockchain.FindNode\032\030.blockchain.K" +
-      "Bucket_GRPC\"\000B<\n\036group3.ssd.blockchain.p" +
-      "2p.grpcB\023BlockchainGRPCProtoP\001\242\002\002BCb\006pro" +
-      "to3"
+      "\n\016Messages.proto\022\nblockchain\"K\n\004Ping\022\n\n\002" +
+      "id\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\022\r\n\005pr" +
+      "oof\030\004 \001(\005\022\016\n\006pubKey\030\005 \001(\t\"@\n\004Pong\022\014\n\004pon" +
+      "g\030\001 \001(\010\022*\n\nblockchain\030\002 \001(\0132\026.blockchain" +
+      ".BlockChain\"$\n\010IPAddres\022\n\n\002ip\030\001 \001(\t\022\014\n\004p" +
+      "ort\030\002 \001(\t\"i\n\nBlockChain\022 \n\005chain\030\001 \003(\0132\021" +
+      ".blockchain.Block\0229\n\023pendingTransactions" +
+      "\030\002 \001(\0132\034.blockchain.TransactionsList\"\270\001\n" +
+      "\005Block\022\016\n\006hashId\030\001 \001(\t\022\014\n\004hash\030\002 \001(\t\022\024\n\014" +
+      "previousHash\030\003 \001(\t\0226\n\020transactionsList\030\004" +
+      " \001(\0132\034.blockchain.TransactionsList\022\r\n\005no" +
+      "nce\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\022\021\n\tpublicKe" +
+      "y\030\007 \001(\t\022\016\n\006nodeId\030\010 \001(\t\"D\n\020TransactionsL" +
+      "ist\0220\n\017transactionList\030\001 \003(\0132\027.blockchai" +
+      "n.Transaction\"\225\001\n\013Transaction\022\014\n\004hash\030\001 " +
+      "\001(\t\022\020\n\010senderPK\030\002 \001(\t\022\022\n\nreceiverPK\030\003 \001(" +
+      "\t\022\021\n\tsignature\030\004 \001(\014\022\021\n\ttimestamp\030\005 \001(\003\022" +
+      "\016\n\006amount\030\006 \001(\005\022\014\n\004misc\030\007 \001(\t\022\016\n\006nodeId\030" +
+      "\010 \001(\t\"\030\n\006Status\022\016\n\006status\030\001 \001(\t\"a\n\010FindN" +
+      "ode\022\n\n\002id\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(" +
+      "\005\022\r\n\005proof\030\004 \001(\005\022\016\n\006pubKey\030\005 \001(\t\022\020\n\010targ" +
+      "etId\030\006 \001(\t\"1\n\tNode_GRPC\022\n\n\002id\030\001 \001(\t\022\n\n\002i" +
+      "p\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\"6\n\014KBucket_GRPC\022&\n" +
+      "\007kbucket\030\001 \003(\0132\025.blockchain.Node_GRPC2\275\002" +
+      "\n\004Peer\022,\n\004ping\022\020.blockchain.Ping\032\020.block" +
+      "chain.Pong\"\000\022:\n\017broadcast_block\022\021.blockc" +
+      "hain.Block\032\022.blockchain.Status\"\000\022F\n\025broa" +
+      "dcast_transaction\022\027.blockchain.Transacti" +
+      "on\032\022.blockchain.Status\"\000\022D\n\024broadcast_bl" +
+      "ockchain\022\026.blockchain.BlockChain\032\022.block" +
+      "chain.Status\"\000\022=\n\tfindNodes\022\024.blockchain" +
+      ".FindNode\032\030.blockchain.KBucket_GRPC\"\000B<\n" +
+      "\036group3.ssd.blockchain.p2p.grpcB\023Blockch" +
+      "ainGRPCProtoP\001\242\002\002BCb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -126,8 +124,6 @@ public final class BlockchainGRPCProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf.AnyProto.getDescriptor(),
-          com.google.protobuf.EmptyProto.getDescriptor(),
         }, assigner);
     internal_static_blockchain_Ping_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -195,8 +191,6 @@ public final class BlockchainGRPCProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_blockchain_KBucket_GRPC_descriptor,
         new java.lang.String[] { "Kbucket", });
-    com.google.protobuf.AnyProto.getDescriptor();
-    com.google.protobuf.EmptyProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
